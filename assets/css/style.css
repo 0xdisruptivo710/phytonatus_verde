@@ -139,16 +139,17 @@ button { cursor: pointer; font-family: var(--f-body); }
 .cursor-trail-layer { position: fixed; inset: 0; pointer-events: none; z-index: 9998; }
 .cursor-trail-dot {
     position: fixed;
-    width: 4px;
-    height: 4px;
+    width: 14px;
+    height: 14px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(241,181,0,.55) 0%, rgba(241,181,0,.18) 60%, rgba(241,181,0,0) 100%);
+    background: radial-gradient(circle, rgba(241,181,0,.95) 0%, rgba(241,181,0,.55) 45%, rgba(241,181,0,0) 100%);
     transform: translate(-50%, -50%) scale(1);
-    opacity: .55;
-    transition: opacity 1.2s ease-out, transform 1.2s ease-out;
+    opacity: 1;
+    transition: opacity 1s ease-out, transform 1s ease-out;
     pointer-events: none;
+    will-change: opacity, transform;
 }
-.cursor-trail-dot.fade { opacity: 0; transform: translate(-50%, -50%) scale(.2); }
+.cursor-trail-dot.fade { opacity: 0; transform: translate(-50%, -50%) scale(.25); }
 @media (hover: none), (max-width: 760px) {
     .cursor, .cursor-dot, .cursor-trail-layer { display: none !important; }
     a, button { cursor: auto; }

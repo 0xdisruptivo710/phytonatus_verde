@@ -50,7 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
             cx = e.clientX; cy = e.clientY;
             if (!trailLayer) return;
             const dx = cx - lastTrailX, dy = cy - lastTrailY;
-            if (dx * dx + dy * dy > 4500) {
+            if (dx * dx + dy * dy > 400) {
                 spawnTrailDot(cx, cy);
                 lastTrailX = cx; lastTrailY = cy;
             }
