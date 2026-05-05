@@ -51,7 +51,15 @@
   </nav>
 
   <!-- ═══ HERO ═══════════════════════════════════════════════ -->
-  <section class="hero hero-top-aligned" aria-label="Apresentação" style="background-image:url('assets/images/Gemini_Generated_Image_4jajwf4jajwf4jaj.png');background-size:cover;background-position:center;">
+  <section class="hero hero-top-aligned hero-with-video" aria-label="Apresentação">
+    <video class="hero-video"
+           autoplay muted loop playsinline
+           preload="metadata"
+           poster="assets/images/Gemini_Generated_Image_4jajwf4jajwf4jaj.png"
+           aria-hidden="true">
+      <source src="assets/videos/hero.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-video-overlay" aria-hidden="true"></div>
     <div class="hero-content" style="max-width:1200px;text-align:left;margin-left:0;margin-right:auto;">
       <p style="color:var(--c-cream);font-family:var(--f-title);font-size:clamp(3rem,6.5vw,5.8rem);max-width:1100px;line-height:1.1;font-weight:600;text-align:left;margin-bottom:2.5rem;letter-spacing:-0.01em;">
         Mel Puro, temperos naturais, mercearia saudável e muito mais.
@@ -371,6 +379,30 @@
       }
     }
   </style>
+
+  <!-- Hero video: pausa quando off-screen, respeita prefers-reduced-motion e Save-Data -->
+  <script>
+    (function () {
+      var v = document.querySelector('.hero-video');
+      if (!v) return;
+      var rm = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      var sd = navigator.connection && navigator.connection.saveData;
+      if (rm || sd) {
+        v.removeAttribute('autoplay');
+        v.pause();
+        return;
+      }
+      if ('IntersectionObserver' in window) {
+        var io = new IntersectionObserver(function (entries) {
+          entries.forEach(function (e) {
+            if (e.isIntersecting) { v.play().catch(function () {}); }
+            else { v.pause(); }
+          });
+        }, { threshold: 0.1 });
+        io.observe(v);
+      }
+    })();
+  </script>
 
   <!-- GSAP + ScrollTrigger + Lenis -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
