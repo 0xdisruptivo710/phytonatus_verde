@@ -417,26 +417,22 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: .75rem;
-    padding: 1.4rem 1rem;
+    gap: .85rem;
+    padding: 1rem;
     min-height: 130px;
-    background: var(--c-cream);
-    border: 1px solid var(--c-border-l);
-    border-radius: 10px;
-    transition: border-color .2s, transform .2s, background .2s;
+    background: transparent;
+    border: none;
+    transition: transform .2s;
 }
-.loja-card:hover { border-color: var(--c-accent); transform: translateY(-3px); background: #fff; }
+.loja-card:hover { transform: translateY(-3px); }
 .loja-card-logo {
-    max-width: 130px;
-    max-height: 48px;
+    max-width: 160px;
+    max-height: 70px;
     width: auto;
     height: auto;
     object-fit: contain;
-    filter: grayscale(0.2);
-    opacity: .9;
-    transition: filter .25s, opacity .25s;
+    mix-blend-mode: multiply;
 }
-.loja-card:hover .loja-card-logo { filter: none; opacity: 1; }
 .loja-card-name {
     font-family: var(--f-title);
     font-size: 1.05rem;
