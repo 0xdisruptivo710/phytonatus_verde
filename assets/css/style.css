@@ -813,8 +813,8 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 .ticker-item {
     display: inline-flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    width: 160px;
-    height: 80px;
+    width: 240px;
+    height: 130px;
     padding: 0;
     background: transparent;
     border: none;
@@ -827,12 +827,12 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 .ticker-item img, .ticker-item-lg img {
     display: block;
     max-width: 100%;
-    max-height: 60px;
+    max-height: 110px;
     width: auto; height: auto;
     object-fit: contain;
     mix-blend-mode: multiply;
 }
-.ticker-item-lg img { max-height: 70px; }
+.ticker-item-lg img { max-height: 120px; }
 .ticker-track-wrapper:hover .ticker-track { animation-play-state: paused; }
 
 /* ═══════════════════════════════════════════════════════════
