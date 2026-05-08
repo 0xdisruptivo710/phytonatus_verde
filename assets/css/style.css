@@ -75,9 +75,9 @@
     --c-gourmet: #C8102E;
 
     /* Textos */
-    --c-text-d:  rgba(245,241,225,0.88);
-    --c-muted-d: rgba(245,241,225,0.45);
-    --c-muted-l: rgba(26,18,8,0.48);
+    --c-text-d:  rgba(210,227,180,0.95);   /* Verde claro 7485 C com alta opacidade */
+    --c-muted-d: rgba(210,227,180,0.65);   /* Verde claro 7485 C — substitui cinza */
+    --c-muted-l: rgba(38,78,54,0.62);      /* Verde escuro 350 C — substitui cinza claro */
 
     /* Tipografia */
     --f-title: 'Quicksand', sans-serif;
@@ -483,10 +483,11 @@ footer.footer--light .footer-socials-list a {
     text-transform: none; letter-spacing: 0;
     transition: color .2s, opacity .2s;
 }
-footer.footer--light .footer-socials-list a:hover { opacity: 1; }
-footer.footer--light .footer-socials-list a[aria-label="Instagram"]:hover { color: #E1306C; }
-footer.footer--light .footer-socials-list a[aria-label="LinkedIn"]:hover  { color: #0A66C2; }
-footer.footer--light .footer-socials-list a[aria-label="YouTube"]:hover   { color: #FF0000; }
+footer.footer--light .footer-socials-list a { opacity: 1; }
+footer.footer--light .footer-socials-list a[aria-label="Instagram"] { color: #E1306C; }
+footer.footer--light .footer-socials-list a[aria-label="LinkedIn"]  { color: #0A66C2; }
+footer.footer--light .footer-socials-list a[aria-label="YouTube"]   { color: #FF0000; }
+footer.footer--light .footer-socials-list a:hover { transform: translateX(2px); }
 footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-shrink: 0; }
 
 /* ── Botão flutuante de Loja Online (presente em todas páginas) ── */
@@ -521,14 +522,14 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 /* ═══════════════════════════════════════════════════════════
    SHARED SECTION STYLES
 ═══════════════════════════════════════════════════════════ */
-.s-pad    { padding-block: clamp(40px,5.5vw,80px); }
-.s-pad-sm { padding-block: clamp(28px,3.6vw,52px); }
+.s-pad    { padding-block: clamp(60px,7.5vw,110px); }
+.s-pad-sm { padding-block: clamp(44px,5.5vw,76px); }
 
 /* Wave dividers — quebram a quadratura entre seções */
 .wave-divider {
     display: block;
     width: 100%;
-    height: clamp(24px, 3.6vw, 50px);
+    height: clamp(36px, 5vw, 70px);
     margin: 0;
     padding: 0;
     line-height: 0;
@@ -541,7 +542,7 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
     width: 100%;
     height: 100%;
 }
-.wave-divider.wave-up { margin-top: calc(-1 * clamp(40px, 6vw, 80px)); }
+.wave-divider.wave-up { margin-top: calc(-1 * clamp(36px, 5vw, 70px)); position: relative; z-index: 2; }
 
 .container { width: min(1280px,94%); margin-inline: auto; }
 
