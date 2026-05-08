@@ -525,6 +525,16 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 .s-pad    { padding-block: clamp(60px,7.5vw,110px); }
 .s-pad-sm { padding-block: clamp(44px,5.5vw,76px); }
 
+/* Topo ondulado para seções — sobrepõe a seção anterior com curva real */
+.wavy-top-section {
+    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+    -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+    -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+    margin-top: clamp(-70px, -5.5vh, -32px);
+    position: relative; z-index: 1;
+}
+
 /* Wave dividers — quebram a quadratura entre seções */
 .wave-divider {
     display: block;
