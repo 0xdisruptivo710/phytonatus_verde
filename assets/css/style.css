@@ -397,7 +397,6 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
-    isolation: isolate;
     width: 100%;
     max-width: 760px;
     margin-top: 1rem;
@@ -416,12 +415,12 @@ footer {
 }
 .loja-card:hover { transform: translateY(-3px); }
 .loja-card-logo {
-    max-width: 160px;
-    max-height: 70px;
+    max-width: 240px;
+    max-height: 110px;
     width: auto;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: darken;
+    mix-blend-mode: multiply;
 }
 .loja-card-name {
     font-family: var(--f-title);
@@ -770,7 +769,6 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 ═══════════════════════════════════════════════════════════ */
 .clients-ticker-section {
     background: var(--c-cream-2); overflow: hidden;
-    border-top: 1px solid var(--c-border-l);
     border-bottom: 1px solid var(--c-border-l);
 }
 .clients-ticker-header {
