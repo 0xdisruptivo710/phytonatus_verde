@@ -83,9 +83,34 @@
                 </div>
             </div>
 
-            <div class="fade-in" style="margin-top:clamp(4rem,8vw,6rem);border-radius:12px;overflow:hidden;aspect-ratio:16/9;box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-                <iframe width="100%" height="100%" src="https://www.youtube.com/embed/VTp5H6-_1cA?autoplay=1&mute=1&loop=1&playlist=VTp5H6-_1cA&rel=0" title="Vídeo Institucional Phytonatus" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen style="display:block;"></iframe>
+            <div class="fade-in yt-facade" data-yt-id="VTp5H6-_1cA" role="button" tabindex="0" aria-label="Reproduzir vídeo institucional Phytonatus" style="margin-top:clamp(4rem,8vw,6rem);border-radius:12px;overflow:hidden;aspect-ratio:16/9;box-shadow: 0 20px 40px rgba(0,0,0,0.15);position:relative;cursor:pointer;background:var(--c-bg-escuro-2);">
+                <img src="https://i.ytimg.com/vi/VTp5H6-_1cA/hqdefault.jpg" srcset="https://i.ytimg.com/vi/VTp5H6-_1cA/hqdefault.jpg 480w, https://i.ytimg.com/vi/VTp5H6-_1cA/maxresdefault.jpg 1280w" sizes="(max-width: 880px) 100vw, 880px" alt="Vídeo Institucional Phytonatus" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
+                <span class="yt-facade-play" aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(64px,7vw,92px);height:clamp(64px,7vw,92px);border-radius:50%;background:rgba(38,78,54,0.92);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.35);transition:transform .25s, background .25s;">
+                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                </span>
             </div>
+            <script>
+                (function(){
+                    var f = document.currentScript.previousElementSibling;
+                    if (!f) return;
+                    function load(){
+                        var id = f.getAttribute('data-yt-id');
+                        var iframe = document.createElement('iframe');
+                        iframe.width = '100%'; iframe.height = '100%';
+                        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&modestbranding=1';
+                        iframe.title = 'Vídeo Institucional Phytonatus';
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        iframe.style.display = 'block'; iframe.style.border = '0';
+                        f.innerHTML = ''; f.appendChild(iframe); f.style.cursor = 'default';
+                    }
+                    f.addEventListener('click', load);
+                    f.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(); }});
+                    f.addEventListener('mouseenter', function(){ var p = f.querySelector('.yt-facade-play'); if (p) { p.style.transform = 'translate(-50%,-50%) scale(1.08)'; p.style.background = 'rgba(0,154,68,.95)'; }});
+                    f.addEventListener('mouseleave', function(){ var p = f.querySelector('.yt-facade-play'); if (p) { p.style.transform = 'translate(-50%,-50%)'; p.style.background = 'rgba(38,78,54,0.92)'; }});
+                })();
+            </script>
         </div>
     </section>
 
