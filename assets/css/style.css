@@ -220,18 +220,7 @@ button { cursor: pointer; font-family: var(--f-body); }
     gap: 1.75rem;
     animation: preloader-stage-in 1s ease-out both;
 }
-.preloader-stage::before {
-    content: '';
-    position: absolute;
-    width: clamp(420px, 50vw, 680px);
-    aspect-ratio: 1/1;
-    border: 1px solid rgba(38,78,54,0.18);
-    border-radius: 50%;
-    top: 50%; left: 50%;
-    transform: translate(-50%,-50%);
-    animation: preloader-ring 6s linear infinite;
-    pointer-events: none;
-}
+.preloader-stage::before { display: none; }
 @keyframes preloader-ring {
     0%   { transform: translate(-50%,-50%) scale(.96); opacity: .4; }
     50%  { transform: translate(-50%,-50%) scale(1.04); opacity: .8; }
@@ -408,6 +397,7 @@ footer {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    isolation: isolate;
     width: 100%;
     max-width: 760px;
     margin-top: 1rem;
@@ -431,7 +421,7 @@ footer {
     width: auto;
     height: auto;
     object-fit: contain;
-    mix-blend-mode: multiply;
+    mix-blend-mode: darken;
 }
 .loja-card-name {
     font-family: var(--f-title);
@@ -532,14 +522,14 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 /* ═══════════════════════════════════════════════════════════
    SHARED SECTION STYLES
 ═══════════════════════════════════════════════════════════ */
-.s-pad    { padding-block: clamp(80px,10vw,140px); }
-.s-pad-sm { padding-block: clamp(48px,6vw,80px); }
+.s-pad    { padding-block: clamp(40px,5.5vw,80px); }
+.s-pad-sm { padding-block: clamp(28px,3.6vw,52px); }
 
 /* Wave dividers — quebram a quadratura entre seções */
 .wave-divider {
     display: block;
     width: 100%;
-    height: clamp(40px, 6vw, 80px);
+    height: clamp(24px, 3.6vw, 50px);
     margin: 0;
     padding: 0;
     line-height: 0;
@@ -705,7 +695,7 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
    BRAND CARDS TEASER
 ═══════════════════════════════════════════════════════════ */
 .brands-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; }
-.brand-card { position: relative; aspect-ratio: 1/1; overflow: hidden; background: var(--c-bg-escuro-2); }
+.brand-card { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--c-bg-escuro-2); }
 .brand-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease-out); will-change: transform; }
 .brand-card:hover img { transform: scale(1.07); }
 .brand-card-overlay {
@@ -729,14 +719,14 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 }
 .brand-card:hover .brand-card-badge { transform: translateY(0); opacity: 1; }
 .brand-card-name {
-    font-family: var(--f-title); font-size: clamp(1.5rem,2.6vw,2.1rem);
-    font-weight: 600; color: var(--c-cream); line-height: 1.05; margin-bottom: .6rem;
+    font-family: var(--f-title); font-size: clamp(1.85rem,3.1vw,2.55rem);
+    font-weight: 600; color: var(--c-cream); line-height: 1.05; margin-bottom: .7rem;
 }
 .brand-card-desc {
-    font-size: clamp(.92rem,1.15vw,1.05rem); color: var(--c-cream); opacity: .9; line-height: 1.5;
+    font-size: clamp(1.1rem,1.4vw,1.3rem); color: var(--c-cream); opacity: .92; line-height: 1.5;
     max-height: 0; overflow: hidden; transition: max-height .5s var(--ease-out);
 }
-.brand-card:hover .brand-card-desc { max-height: 120px; }
+.brand-card:hover .brand-card-desc { max-height: 180px; }
 .brand-card-link {
     display: inline-flex; align-items: center; gap: 6px;
     font-size: .6rem; letter-spacing: .12em; text-transform: uppercase; font-weight: 600;
@@ -841,8 +831,8 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
    FOOTER MINI FORM
 ═══════════════════════════════════════════════════════════ */
 .footer-contact-section {
-    background: var(--c-bg-escuro-2); border-top: 1px solid var(--c-border-d);
-    padding: clamp(48px,6vw,80px) 0;
+    background: var(--c-bg-escuro-2);
+    padding: clamp(32px,4vw,56px) 0;
 }
 /* Garante contraste em eyebrows e labels dentro do footer escuro */
 .footer-contact-section .section-eyebrow,
@@ -859,7 +849,7 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
     font-weight: 300; color: var(--c-cream); line-height: 1.1; margin-bottom: 1rem;
 }
 .footer-contact-info h3 em { font-style: normal; color: var(--c-accent); font-weight: 600; }
-.footer-contact-info p { font-size: .9rem; color: var(--c-muted-d); line-height: 1.8; max-width: 380px; }
+.footer-contact-info p { font-size: clamp(1.05rem,1.3vw,1.2rem); color: var(--c-muted-d); line-height: 1.8; max-width: 460px; }
 .footer-mini-form { display: flex; flex-direction: column; gap: 1rem; }
 .footer-mini-form .float-group { position: relative; margin-bottom: 0; }
 .footer-mini-form .float-input { background: rgba(245,241,225,.06); border-color: var(--c-border-d); color: var(--c-cream); }
