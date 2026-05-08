@@ -344,11 +344,25 @@ button { cursor: pointer; font-family: var(--f-body); }
 }
 .mobile-menu a:hover { color: var(--c-accent); }
 .mobile-menu .m-cta {
-    margin-top: 1rem; font-size: 0.75rem;
-    letter-spacing: 0.15em; text-transform: uppercase;
-    padding: 12px 28px;
-    border: 1.5px solid var(--c-accent);
-    color: var(--c-accent); border-radius: 100px;
+    position: absolute;
+    bottom: clamp(24px, 5vw, 40px);
+    right: clamp(24px, 5vw, 40px);
+    margin-top: 0;
+    padding: 14px 26px;
+    background: var(--c-accent);
+    color: #fff;
+    border: none;
+    border-radius: 100px;
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 28px rgba(0,0,0,.22);
+    transition: transform .2s, background .2s;
+}
+.mobile-menu .m-cta:hover {
+    background: #007d37;
+    transform: translateY(-2px);
 }
 
 /* ═══════════════════════════════════════════════════════════
@@ -525,13 +539,21 @@ footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-
 .s-pad    { padding-block: clamp(60px,7.5vw,110px); }
 .s-pad-sm { padding-block: clamp(44px,5.5vw,76px); }
 
-/* Topo ondulado para seções — sobrepõe a seção anterior com curva real */
+/* Topo ondulado para seções — onda em altura fixa (não se estica conforme altura da seção) */
 .wavy-top-section {
-    -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-            mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-    -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+    --wave-h: clamp(40px, 4vw, 60px);
+    -webkit-mask-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        linear-gradient(#fff, #fff);
+            mask-image:
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        linear-gradient(#fff, #fff);
+    -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+            mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+    -webkit-mask-position: top center, bottom center;
+            mask-position: top center, bottom center;
     -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-    margin-top: clamp(-70px, -5.5vh, -32px);
+    margin-top: calc(-1 * var(--wave-h) * 0.55);
     position: relative; z-index: 1;
 }
 

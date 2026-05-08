@@ -166,22 +166,22 @@
         .brand-block-full {
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
-            /* Topo ondulado — articulado com a brands-wave anterior */
-            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            /* Topo ondulado — altura fixa para a curva nao se estirar */
+            --wave-h: clamp(40px, 4vw, 60px);
+            -webkit-mask-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                linear-gradient(#fff, #fff);
+                    mask-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                linear-gradient(#fff, #fff);
+            -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+                    mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+            -webkit-mask-position: top center, bottom center;
+                    mask-position: top center, bottom center;
             -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-            margin-top: clamp(-50px, -4vh, -25px);
+            margin-top: calc(-1 * var(--wave-h) * 0.55);
         }
-        /* Seção CTA com topo ondulado, sobrepondo o último bloco de marca */
-        .wavy-top-section {
-            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
-            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
-            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-            margin-top: clamp(-60px, -5vh, -30px);
-            position: relative; z-index: 1;
-        }
+        /* .wavy-top-section global — definida em assets/css/style.css */
         /* Onda vertical entre foto e info — diferente das ondas horizontais */
         .brand-block-info { position: relative; }
         .brand-block-info::before {
