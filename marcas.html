@@ -62,13 +62,7 @@
         </div>
     </section>
 
-    <div class="wave-divider wave-up" aria-hidden="true">
-      <svg viewBox="0 0 1440 80" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z" fill="var(--c-cream-2)"/>
-      </svg>
-    </div>
-
-    <!-- ═══ EMPÓRIO DO MEL ══════════════════════════════════ -->
+<!-- ═══ EMPÓRIO DO MEL ══════════════════════════════════ -->
     <article id="emporio-mel" class="brand-block-full brand-tone-mel">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
             <img src="assets/images/Gemini_Generated_Image_vujvx2vujvx2vujv.png" alt="Empório do Mel — méis por florada, laranjeira, eucalipto, flores do campo, assa-peixe" loading="eager" style="object-fit:cover;" />
@@ -101,13 +95,7 @@
         </div>
     </article>
 
-    <div class="brands-wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,110 L0,110 Z" fill="var(--c-cream-2)"/>
-      </svg>
-    </div>
-
-    <!-- ═══ EMPÓRIO NUT'S ════════════════════════════════════ -->
+<!-- ═══ EMPÓRIO NUT'S ════════════════════════════════════ -->
     <article id="emporio-nuts" class="brand-block-full reverse brand-tone-nuts">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
             <img src="assets/images/Gemini_Generated_Image_th2ucfth2ucfth2u.png" alt="Empório Nut's — sal rosa do Himalaia, cacau em pó, derivados de coco, temperos naturais" loading="lazy" style="object-fit:cover;" />
@@ -131,13 +119,7 @@
         </div>
     </article>
 
-    <div class="brands-wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,110 L0,110 Z" fill="var(--c-cream-2)"/>
-      </svg>
-    </div>
-
-    <!-- ═══ PHYTONATUS ═══════════════════════════════════════ -->
+<!-- ═══ PHYTONATUS ═══════════════════════════════════════ -->
     <article id="phytonatus" class="brand-block-full brand-tone-phyto">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
             <img src="assets/images/Gemini_Generated_Image_gznhxagznhxagznh.png" alt="Phytonatus — Bisnagas de Mel Puro e Saudável" loading="lazy" style="object-fit:cover;" />
@@ -158,13 +140,7 @@
         </div>
     </article>
 
-    <div class="brands-wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,110 L0,110 Z" fill="var(--c-cream-2)"/>
-      </svg>
-    </div>
-
-    <!-- ═══ VIDA GOURMET ═════════════════════════════════════ -->
+<!-- ═══ VIDA GOURMET ═════════════════════════════════════ -->
     <article id="vida-gourmet" class="brand-block-full reverse brand-tone-gourmet">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
             <img src="assets/images/Gemini_Generated_Image_xeblp7xeblp7xebl.png" alt="Vida Gourmet — Chimichurri Receita Tradicional Argentina com Sal Rosa do Himalaia" loading="lazy" style="object-fit:cover;" />
@@ -185,28 +161,27 @@
         </div>
     </article>
 
-    <div class="brands-wave" aria-hidden="true">
-      <svg viewBox="0 0 1440 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,110 L0,110 Z" fill="var(--c-cream)"/>
-      </svg>
-    </div>
-
     <style>
         /* Layout enxuto + hover expansivo */
         .brand-block-full {
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
+            /* Topo ondulado — articulado com a brands-wave anterior */
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,30 C240,0 480,60 720,30 C960,0 1200,60 1440,30 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            margin-top: clamp(-50px, -4vh, -25px);
         }
-        /* Onda entre blocos de marca — sobrepõe o final de cada bloco com curva cream-2 */
-        .brands-wave {
-            display: block; width: 100%;
-            height: clamp(60px, 7vw, 110px);
-            margin-top: calc(-1 * clamp(60px, 7vw, 110px));
-            margin-bottom: 0;
-            position: relative; z-index: 5;
-            pointer-events: none;
+        /* Seção CTA com topo ondulado, sobrepondo o último bloco de marca */
+        .wavy-top-section {
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,1000 L0,1000 Z' fill='white'/></svg>");
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            margin-top: clamp(-60px, -5vh, -30px);
+            position: relative; z-index: 1;
         }
-        .brands-wave svg { display: block; width: 100%; height: 100%; }
         /* Onda vertical entre foto e info — diferente das ondas horizontais */
         .brand-block-info { position: relative; }
         .brand-block-info::before {
@@ -354,7 +329,7 @@
     </style>
 
     <!-- CTA catálogo -->
-    <section style="background:var(--c-cream);" class="s-pad-sm">
+    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream);">
         <div class="container"
             style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
             <p class="section-eyebrow" style="justify-content:center;">Portfólio completo</p>
