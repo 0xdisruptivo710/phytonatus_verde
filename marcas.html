@@ -179,6 +179,17 @@
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
         }
+        /* Onda na borda inferior de cada bloco (exceto o último) — substitui corte reto entre marcas */
+        .brand-block-full:not(:last-of-type) {
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,0 L1440,0 L1440,950 C1200,1005 960,895 720,950 C480,1005 240,895 0,950 Z' fill='black'/></svg>");
+                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 1000' preserveAspectRatio='none'><path d='M0,0 L1440,0 L1440,950 C1200,1005 960,895 720,950 C480,1005 240,895 0,950 Z' fill='black'/></svg>");
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+        }
+        /* Cada bloco de marca subsequente sobe levemente para fechar o vão da onda */
+        .brand-block-full + .brand-block-full {
+            margin-top: clamp(-50px, -3.5vh, -22px);
+        }
         /* Onda vertical entre foto e info — diferente das ondas horizontais */
         .brand-block-info { position: relative; }
         .brand-block-info::before {
