@@ -160,14 +160,14 @@
     </article>
 
     <style>
-        /* Hero da marcas: gradient suaviza no rodape para nao competir
-           com a onda da primeira marca (fluida sem "sombra preta") */
+        /* Hero da marcas: gradient moderado no rodape - mantém contraste
+           o suficiente pra a onda da primeira marca ser visivel,
+           sem a "sombra preta forte" do original */
         .hero.grain::before {
             background: linear-gradient(180deg,
                 rgba(0,0,0,0.45) 0%,
-                rgba(0,0,0,0.30) 45%,
-                rgba(0,0,0,0.05) 88%,
-                rgba(0,0,0,0) 100%
+                rgba(0,0,0,0.32) 50%,
+                rgba(0,0,0,0.28) 100%
             ) !important;
         }
 
