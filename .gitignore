@@ -1,0 +1,20 @@
+# Backup local das fotos originais antes de compressao web
+assets/images/_originals/
+
+# Pastas de trabalho locais (assets brutos, briefings, skills externas)
+briefing-site-*/
+LOGO CLIENTES/
+ui-ux-pro-max-skill-main/
+EDITADOS-*/
+drive-download-*/
+LOGOS CLIENTES *
+
+# Documentos do cliente (Word/PDF soltos)
+*.docx
+*.pdf
+!**/catalogo.pdf
+
+# Sistema
+.DS_Store
+Thumbs.db
+*.tmp
