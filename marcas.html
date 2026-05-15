@@ -171,37 +171,47 @@
             ) !important;
         }
 
-        /* Layout enxuto + hover expansivo */
+        /* Layout enxuto + hover expansivo.
+           SEM mask de onda na article — a onda agora vive em um ::before
+           que senta NA secao anterior, garantindo que as fotos nunca sejam
+           cortadas. */
         .brand-block-full {
+            position: relative;
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
-            /* Topo ondulado — altura fixa, curva unica e suave */
             --wave-h: clamp(52px, 5.5vw, 80px);
-            -webkit-mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
-                linear-gradient(#fff, #fff);
-                    mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
-                linear-gradient(#fff, #fff);
-            -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
-                    mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
-            -webkit-mask-position: top center, bottom center;
-                    mask-position: top center, bottom center;
-            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-            /* Overlap total — onda inteiramente dentro da seçao anterior,
-               sem mostrar background atras */
-            margin-top: calc(-1 * var(--wave-h));
         }
 
+        /* Onda divisora — pseudo-element posicionado ACIMA do brand-block,
+           sobrepondo a secao anterior. Fill com a cor da marca (mascarado
+           pela curva). Foto e info abaixo ficam intactos. */
+        .brand-block-full::before {
+            content: '';
+            position: absolute;
+            top: calc(-1 * var(--wave-h));
+            left: 0;
+            right: 0;
+            height: var(--wave-h);
+            background: var(--brand-accent-bg);
+            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>");
+                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>");
+            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
+            z-index: 5;
+            pointer-events: none;
+        }
+        .brand-tone-mel     { --brand-accent-bg: var(--c-mel-amarelo-2); }
+        .brand-tone-nuts    { --brand-accent-bg: var(--c-nuts-bege-2); }
+        .brand-tone-phyto   { --brand-accent-bg: var(--c-phyto-apicultor-amarelo); }
+        .brand-tone-gourmet { --brand-accent-bg: var(--c-gourmet-bege-2); }
+
         /* .wavy-top-section global — definida em assets/css/style.css */
-        /* Onda vertical entre foto e info — diferente das ondas horizontais.
-           Comeca abaixo da onda de topo (var(--wave-h)) para nao gerar
-           uma 3a cor visivel na transicao com a secao anterior. */
+        /* Onda vertical entre foto e info — diferente das ondas horizontais. */
         .brand-block-info { position: relative; }
         .brand-block-info::before {
             content: '';
             position: absolute;
-            top: var(--wave-h); bottom: var(--wave-h);
+            top: 0; bottom: 0;
             left: 0;
             width: clamp(40px, 5vw, 70px);
             transform: translateX(-100%);
@@ -240,13 +250,13 @@
         .brand-block-full .brand-block-img:hover img { transform: scale(1.08) !important; }
         .brand-block-full .brand-block-img,
         .brand-block-full .brand-block-info { transition: flex .7s, padding .7s; }
-        /* Padding interno — top precisa ser >= var(--wave-h) para o logo
-           nao ser cortado pela curva do mascaramento de topo do article.
-           Bottom igual para simetria visual nos blocos seguintes. */
+        /* Padding interno — onda agora vive FORA da article (em ::before
+           da brand-block-full), entao logo nunca eh cortado.
+           Padding moderado para respiro visual. */
         .brand-block-info {
             text-align: center;
             align-items: center;
-            padding: calc(var(--wave-h) + clamp(1.25rem,2.5vw,3rem)) clamp(0.75rem,1.5vw,1.5rem) calc(var(--wave-h) + clamp(1rem,2vw,2rem)) !important;
+            padding: clamp(2.5rem, 4vw, 4rem) clamp(0.75rem,1.5vw,1.5rem) !important;
         }
         .brand-block-info > * { width: 100%; max-width: 640px; }
         .brand-block-info .brand-block-products,
