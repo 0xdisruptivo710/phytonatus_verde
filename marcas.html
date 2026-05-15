@@ -165,12 +165,12 @@
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
             /* Topo ondulado — altura fixa, curva unica e suave (sem 3a cor) */
-            --wave-h: clamp(32px, 3.2vw, 52px);
+            --wave-h: clamp(52px, 5.5vw, 80px);
             -webkit-mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,46 C420,16 1020,62 1440,38 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
                 linear-gradient(#fff, #fff);
                     mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,46 C420,16 1020,62 1440,38 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
                 linear-gradient(#fff, #fff);
             -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
                     mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
