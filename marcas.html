@@ -246,11 +246,6 @@
             align-items: center;
             padding: calc(var(--wave-h) + clamp(1.25rem,2.5vw,3rem)) clamp(0.75rem,1.5vw,1.5rem) calc(var(--wave-h) + clamp(1rem,2vw,2rem)) !important;
         }
-        /* Brand-block-img tambem precisa de padding-top para a foto nao
-           ser drasticamente cortada pela onda */
-        .brand-block-full .brand-block-img {
-            padding-top: var(--wave-h);
-        }
         .brand-block-info > * { width: 100%; max-width: 640px; }
         .brand-block-info .brand-block-products,
         .brand-block-info .brand-block-actions {
@@ -306,42 +301,24 @@
         .brand-tone-phyto   .btn-tabela-circle:hover { background: transparent; color: var(--c-phyto-apicultor); }
         .brand-tone-gourmet .btn-tabela-circle:hover { background: transparent; color: var(--c-gourmet-vermelho); }
 
-        /* ── Gradientes seguindo o padrão Phytonatus (3 stops, accent → light)
-              O top var(--wave-h) usa cream-2 para casar com o brand-block-img
-              ao lado, eliminando a percepcao de 3a cor na onda. ── */
+        /* ── Gradientes seguindo o padrão Phytonatus (3 stops, accent → light) ── */
         .brand-tone-phyto .brand-block-info {
-            background: linear-gradient(180deg,
-                var(--c-cream-2) 0%,
-                var(--c-cream-2) calc(var(--wave-h) - 2px),
-                var(--c-phyto-apicultor-amarelo) calc(var(--wave-h) + 12px),
-                #FCE9A3 60%, #FFF6DC 100%);
+            background: linear-gradient(180deg, var(--c-phyto-apicultor-amarelo) 0%, #FCE9A3 60%, #FFF6DC 100%);
         }
         .brand-tone-phyto .brand-block-name,
         .brand-tone-phyto .brand-block-text { color: var(--c-phyto-apicultor) !important; }
         .brand-tone-mel .brand-block-info {
-            background: linear-gradient(180deg,
-                var(--c-cream-2) 0%,
-                var(--c-cream-2) calc(var(--wave-h) - 2px),
-                var(--c-mel-amarelo-2) calc(var(--wave-h) + 12px),
-                var(--c-mel-amarelo-1) 60%, #FFF8C5 100%);
+            background: linear-gradient(180deg, var(--c-mel-amarelo-2) 0%, var(--c-mel-amarelo-1) 60%, #FFF8C5 100%);
         }
         .brand-tone-mel .brand-block-name,
         .brand-tone-mel .brand-block-text { color: var(--c-mel-marrom) !important; }
         .brand-tone-nuts .brand-block-info {
-            background: linear-gradient(180deg,
-                var(--c-cream-2) 0%,
-                var(--c-cream-2) calc(var(--wave-h) - 2px),
-                var(--c-nuts-bege-2) calc(var(--wave-h) + 12px),
-                var(--c-nuts-bege-1) 60%, #F5EFDC 100%);
+            background: linear-gradient(180deg, var(--c-nuts-bege-2) 0%, var(--c-nuts-bege-1) 60%, #F5EFDC 100%);
         }
         .brand-tone-nuts .brand-block-name,
         .brand-tone-nuts .brand-block-text { color: var(--c-nuts-marrom) !important; }
         .brand-tone-gourmet .brand-block-info {
-            background: linear-gradient(180deg,
-                var(--c-cream-2) 0%,
-                var(--c-cream-2) calc(var(--wave-h) - 2px),
-                var(--c-gourmet-bege-2) calc(var(--wave-h) + 12px),
-                var(--c-gourmet-bege-1) 60%, #FAF3DD 100%);
+            background: linear-gradient(180deg, var(--c-gourmet-bege-2) 0%, var(--c-gourmet-bege-1) 60%, #FAF3DD 100%);
         }
         .brand-tone-gourmet .brand-block-name,
         .brand-tone-gourmet .brand-block-text { color: var(--c-gourmet-vermelho) !important; }
