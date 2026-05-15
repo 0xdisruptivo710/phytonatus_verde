@@ -160,6 +160,17 @@
     </article>
 
     <style>
+        /* Hero da marcas: gradient suaviza no rodape para nao competir
+           com a onda da primeira marca (fluida sem "sombra preta") */
+        .hero.grain::before {
+            background: linear-gradient(180deg,
+                rgba(0,0,0,0.45) 0%,
+                rgba(0,0,0,0.30) 45%,
+                rgba(0,0,0,0.05) 88%,
+                rgba(0,0,0,0) 100%
+            ) !important;
+        }
+
         /* Layout enxuto + hover expansivo */
         .brand-block-full {
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
@@ -359,7 +370,7 @@
     </style>
 
     <!-- CTA catálogo -->
-    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream);">
+    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream); margin-top: calc(-1 * var(--wave-h) * 0.45); padding-top: clamp(3rem, 5vw, 5rem);">
         <div class="container"
             style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
             <h2 class="section-title-md" style="color:var(--c-dark);">Acesse o nosso catálogo</h2>
