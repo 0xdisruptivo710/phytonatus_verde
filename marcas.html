@@ -192,12 +192,14 @@
             margin-top: calc(-1 * var(--wave-h));
         }
         /* .wavy-top-section global — definida em assets/css/style.css */
-        /* Onda vertical entre foto e info — diferente das ondas horizontais */
+        /* Onda vertical entre foto e info — diferente das ondas horizontais.
+           Comeca abaixo da onda de topo (var(--wave-h)) para nao gerar
+           uma 3a cor visivel na transicao com a secao anterior. */
         .brand-block-info { position: relative; }
         .brand-block-info::before {
             content: '';
             position: absolute;
-            top: 0; bottom: 0;
+            top: var(--wave-h); bottom: var(--wave-h);
             left: 0;
             width: clamp(40px, 5vw, 70px);
             transform: translateX(-100%);
@@ -236,11 +238,18 @@
         .brand-block-full .brand-block-img:hover img { transform: scale(1.08) !important; }
         .brand-block-full .brand-block-img,
         .brand-block-full .brand-block-info { transition: flex .7s, padding .7s; }
-        /* Padding interno enxuto — pouco espaço nas bordas */
+        /* Padding interno — top precisa ser >= var(--wave-h) para o logo
+           nao ser cortado pela curva do mascaramento de topo do article.
+           Bottom igual para simetria visual nos blocos seguintes. */
         .brand-block-info {
             text-align: center;
             align-items: center;
-            padding: clamp(1.25rem,2vw,2rem) clamp(0.75rem,1.5vw,1.5rem) !important;
+            padding: calc(var(--wave-h) + clamp(1.25rem,2.5vw,3rem)) clamp(0.75rem,1.5vw,1.5rem) calc(var(--wave-h) + clamp(1rem,2vw,2rem)) !important;
+        }
+        /* Brand-block-img tambem precisa de padding-top para a foto nao
+           ser drasticamente cortada pela onda */
+        .brand-block-full .brand-block-img {
+            padding-top: var(--wave-h);
         }
         .brand-block-info > * { width: 100%; max-width: 640px; }
         .brand-block-info .brand-block-products,
@@ -257,7 +266,14 @@
         }
         .brand-logo-apicultor,
         .brand-logo-nuts { width: clamp(320px, 38vw, 460px); height: clamp(160px, 18vw, 220px); aspect-ratio: auto; }
-        .brand-logo-gourmet { width: clamp(560px, 70vw, 820px); height: clamp(290px, 36vw, 420px); aspect-ratio: auto; }
+        .brand-logo-gourmet {
+            width: clamp(680px, 82vw, 960px);
+            height: clamp(360px, 44vw, 520px);
+            aspect-ratio: auto;
+            position: relative;
+            top: clamp(2.5rem, 6vw, 6rem);
+            margin-bottom: clamp(2.5rem, 6vw, 6rem);
+        }
 
         /* ── Botão Tabela Nutricional redondo (request Ana 13/05) ── */
         .btn-tabela-circle {
@@ -290,24 +306,42 @@
         .brand-tone-phyto   .btn-tabela-circle:hover { background: transparent; color: var(--c-phyto-apicultor); }
         .brand-tone-gourmet .btn-tabela-circle:hover { background: transparent; color: var(--c-gourmet-vermelho); }
 
-        /* ── Gradientes seguindo o padrão Phytonatus (3 stops, accent → light) ── */
+        /* ── Gradientes seguindo o padrão Phytonatus (3 stops, accent → light)
+              O top var(--wave-h) usa cream-2 para casar com o brand-block-img
+              ao lado, eliminando a percepcao de 3a cor na onda. ── */
         .brand-tone-phyto .brand-block-info {
-            background: linear-gradient(180deg, var(--c-phyto-apicultor-amarelo) 0%, #FCE9A3 60%, #FFF6DC 100%);
+            background: linear-gradient(180deg,
+                var(--c-cream-2) 0%,
+                var(--c-cream-2) calc(var(--wave-h) - 2px),
+                var(--c-phyto-apicultor-amarelo) calc(var(--wave-h) + 12px),
+                #FCE9A3 60%, #FFF6DC 100%);
         }
         .brand-tone-phyto .brand-block-name,
         .brand-tone-phyto .brand-block-text { color: var(--c-phyto-apicultor) !important; }
         .brand-tone-mel .brand-block-info {
-            background: linear-gradient(180deg, var(--c-mel-amarelo-2) 0%, var(--c-mel-amarelo-1) 60%, #FFF8C5 100%);
+            background: linear-gradient(180deg,
+                var(--c-cream-2) 0%,
+                var(--c-cream-2) calc(var(--wave-h) - 2px),
+                var(--c-mel-amarelo-2) calc(var(--wave-h) + 12px),
+                var(--c-mel-amarelo-1) 60%, #FFF8C5 100%);
         }
         .brand-tone-mel .brand-block-name,
         .brand-tone-mel .brand-block-text { color: var(--c-mel-marrom) !important; }
         .brand-tone-nuts .brand-block-info {
-            background: linear-gradient(180deg, var(--c-nuts-bege-2) 0%, var(--c-nuts-bege-1) 60%, #F5EFDC 100%);
+            background: linear-gradient(180deg,
+                var(--c-cream-2) 0%,
+                var(--c-cream-2) calc(var(--wave-h) - 2px),
+                var(--c-nuts-bege-2) calc(var(--wave-h) + 12px),
+                var(--c-nuts-bege-1) 60%, #F5EFDC 100%);
         }
         .brand-tone-nuts .brand-block-name,
         .brand-tone-nuts .brand-block-text { color: var(--c-nuts-marrom) !important; }
         .brand-tone-gourmet .brand-block-info {
-            background: linear-gradient(180deg, var(--c-gourmet-bege-2) 0%, var(--c-gourmet-bege-1) 60%, #FAF3DD 100%);
+            background: linear-gradient(180deg,
+                var(--c-cream-2) 0%,
+                var(--c-cream-2) calc(var(--wave-h) - 2px),
+                var(--c-gourmet-bege-2) calc(var(--wave-h) + 12px),
+                var(--c-gourmet-bege-1) 60%, #FAF3DD 100%);
         }
         .brand-tone-gourmet .brand-block-name,
         .brand-tone-gourmet .brand-block-text { color: var(--c-gourmet-vermelho) !important; }
@@ -370,7 +404,7 @@
     </style>
 
     <!-- CTA catálogo -->
-    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream); margin-top: calc(-1 * var(--wave-h) * 0.45); padding-top: clamp(3rem, 5vw, 5rem);">
+    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream); padding-top: clamp(3rem, 5vw, 5rem);">
         <div class="container"
             style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
             <h2 class="section-title-md" style="color:var(--c-dark);">Acesse o nosso catálogo</h2>

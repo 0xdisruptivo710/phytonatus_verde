@@ -291,9 +291,9 @@
             content: '';
             position: absolute;
             inset: 0;
-            background: rgba(245,241,225,0.55);
-            backdrop-filter: blur(6px) saturate(0.85);
-            -webkit-backdrop-filter: blur(6px) saturate(0.85);
+            background: rgba(245,241,225,0.32);
+            backdrop-filter: blur(1.5px) saturate(0.95);
+            -webkit-backdrop-filter: blur(1.5px) saturate(0.95);
             z-index: 1;
             pointer-events: none;
         }
@@ -307,9 +307,9 @@
         /* Cada bloco de texto ganha sua propria "pílula" com bg sutil pra reforçar leitura */
         .pl-alcance-header,
         .pl-alcance-refs {
-            background: rgba(245,241,225,0.65);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
+            background: rgba(245,241,225,0.82);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
             border-radius: 16px;
             padding: clamp(1.5rem, 3vw, 2.5rem);
         }
@@ -341,11 +341,12 @@
             aspect-ratio: 1 / 1;
             max-width: 240px;
             margin-inline: auto;
-            background: #000;
-            border-radius: 14px;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.18);
-            overflow: hidden;
-            transition: transform .3s var(--ease-out), box-shadow .3s;
+            background: transparent;
+            border-radius: 0;
+            box-shadow: none;
+            overflow: visible;
+            transition: transform .3s var(--ease-out);
+            padding: clamp(0.75rem, 1.5vw, 1.25rem);
         }
         .pl-brand-hero img {
             width: 100%;
@@ -355,8 +356,7 @@
             transition: transform .3s var(--ease-out);
         }
         .pl-brand-hero:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 18px 42px rgba(0,0,0,0.26);
+            transform: translateY(-4px);
         }
         .pl-brand-hero:hover img { transform: scale(1.04); }
         @media (max-width: 960px) { .pl-brands-hero-grid { grid-template-columns: repeat(2, 1fr); } }
