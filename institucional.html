@@ -252,9 +252,14 @@
 
                 <!-- EU RECICLO -->
                 <div class="cert-card" aria-label="Eu Reciclo">
-                    <div class="cert-card-img">
-                        <!-- TODO: aguarda asset Ana — selo-eu-reciclo.png -->
-                        <img src="" alt="Selo Eu Reciclo — Logística Reversa" loading="lazy" />
+                    <div class="cert-card-img cert-card-img--icon" aria-hidden="true">
+                        <!-- Placeholder generico — substituir por selo-eu-reciclo.png quando chegar -->
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#264E36" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="50" cy="50" r="46" stroke-width="2" opacity="0.35"/>
+                            <path d="M50 22 L62 38 L54 38 L54 50 L46 50 L46 38 L38 38 Z" fill="#264E36" stroke="none"/>
+                            <path d="M73 65 L82 53 L80 67 L70 75 L62 65 L70 60 Z" fill="#264E36" stroke="none"/>
+                            <path d="M27 65 L18 53 L20 67 L30 75 L38 65 L30 60 Z" fill="#264E36" stroke="none"/>
+                        </svg>
                     </div>
                     <h3 class="cert-card-title">Eu Reciclo</h3>
                     <p class="cert-card-sub">Logística Reversa</p>
@@ -285,6 +290,7 @@
             margin-bottom: 0.2rem;
         }
         .cert-card-img img { width: 100%; height: 100%; object-fit: contain; mix-blend-mode: multiply; }
+        .cert-card-img--icon svg { width: 100%; height: 100%; display: block; }
         .cert-card-title {
             font-family: var(--f-title);
             font-size: 1.6rem;
