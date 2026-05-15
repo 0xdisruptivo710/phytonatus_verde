@@ -164,20 +164,21 @@
         .brand-block-full {
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
-            /* Topo ondulado — altura fixa para a curva nao se estirar */
-            --wave-h: clamp(40px, 4vw, 60px);
+            /* Topo ondulado — altura fixa, curva unica e suave (sem 3a cor) */
+            --wave-h: clamp(32px, 3.2vw, 52px);
             -webkit-mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,46 C420,16 1020,62 1440,38 L1440,80 L0,80 Z' fill='white'/></svg>"),
                 linear-gradient(#fff, #fff);
                     mask-image:
-                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,46 C420,16 1020,62 1440,38 L1440,80 L0,80 Z' fill='white'/></svg>"),
                 linear-gradient(#fff, #fff);
             -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
                     mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
             -webkit-mask-position: top center, bottom center;
                     mask-position: top center, bottom center;
             -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-            margin-top: calc(-1 * var(--wave-h) * 0.55);
+            /* Overlap total — onda inteiramente dentro da seçao anterior */
+            margin-top: calc(-1 * var(--wave-h));
         }
         /* .wavy-top-section global — definida em assets/css/style.css */
         /* Onda vertical entre foto e info — diferente das ondas horizontais */
