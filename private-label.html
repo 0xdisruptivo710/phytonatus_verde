@@ -91,38 +91,49 @@
         </div>
     </section>
 
-    <!-- ═══ ★ ALCANCE GLOBAL — herói da página com mapa de background ══════ -->
+    <!-- ═══ ★ ALCANCE GLOBAL — layout duas colunas: mapa clear + conteudo ══════ -->
     <section class="pl-alcance-global wavy-top-section" aria-label="Alcance Global e Mercado Internacional">
         <div class="container">
-            <div class="pl-alcance-header">
-                <p class="section-eyebrow fade-in" style="justify-content:center;color:var(--c-accent);">Exportação</p>
-                <h2 class="section-title-lg fade-in" style="color:var(--c-dark);line-height:1.05;">Mercado Internacional</h2>
-                <p class="body-lead fade-in" style="max-width:780px;margin:1.5rem auto 0;">
-                    Levamos a qualidade Phytonatus para o mundo por meio de uma estrutura sólida, certificações reconhecidas e expertise no desenvolvimento e fornecimento de produtos naturais. Com foco em excelência, segurança e confiança, atendemos às exigências do mercado global e fortalecemos parcerias que valorizam qualidade, eficiência e compromisso em cada etapa do processo.
-                </p>
-            </div>
+            <div class="pl-alcance-layout">
+                <!-- COLUNA ESQUERDA: mapa clean -->
+                <div class="pl-alcance-map fade-in">
+                    <img src="assets/images/mapa-mercado-internacional.png" alt="Mapa do alcance internacional da Phytonatus" loading="lazy" />
+                </div>
 
-            <div class="pl-alcance-refs fade-in">
-                <p class="section-eyebrow" style="justify-content:center;color:var(--c-accent);">Referências que confiam</p>
-                <p class="body-lead" style="max-width:780px;margin:0.75rem auto 0;">
-                    Referências do mercado já confiam em nossa expertise. Parcerias sólidas e duradouras, com vantagem competitiva real em custos, qualidade e agilidade.
-                </p>
-            </div>
+                <!-- COLUNA DIREITA: conteudo -->
+                <div class="pl-alcance-content">
+                    <div class="pl-alcance-header">
+                        <p class="section-eyebrow fade-in" style="color:var(--c-accent);">Exportação</p>
+                        <h2 class="section-title-lg fade-in" style="color:var(--c-dark);line-height:1.05;">Mercado Internacional</h2>
+                        <p class="body-lead fade-in" style="margin-top:1.25rem;">
+                            Levamos a qualidade Phytonatus para o mundo por meio de uma estrutura sólida, certificações reconhecidas e expertise no desenvolvimento e fornecimento de produtos naturais. Com foco em excelência, segurança e confiança, atendemos às exigências do mercado global e fortalecemos parcerias que valorizam qualidade, eficiência e compromisso em cada etapa do processo.
+                        </p>
+                    </div>
 
-            <div class="pl-alcance-divider" aria-hidden="true"></div>
-
-            <div class="pl-alcance-brands fade-in">
-                <p class="section-eyebrow" style="justify-content:center;color:var(--c-accent);">Marcas que exportamos</p>
-                <div class="pl-brands-hero-grid">
-                    <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/la-pierre.png" alt="La Pierre" loading="lazy" /></div>
-                    <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/fazenda-sedrez.png" alt="Fazenda Sedrez" loading="lazy" /></div>
-                    <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/aster.png" alt="Áster" loading="lazy" /></div>
-                    <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/nuestra-cocina.png" alt="Nuestra Cocina" loading="lazy" /></div>
+                    <div class="pl-alcance-refs fade-in">
+                        <p class="section-eyebrow" style="color:var(--c-accent);">Referências que confiam</p>
+                        <p class="body-lead" style="margin-top:0.75rem;">
+                            Referências do mercado já confiam em nossa expertise. Parcerias sólidas e duradouras, com vantagem competitiva real em custos, qualidade e agilidade.
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="pl-alcance-cta fade-in">
-                <a href="contato.html" class="btn btn-solid-accent">Fale Conosco <span class="btn-arrow">→</span></a>
+            <!-- FAIXA INFERIOR FULL-WIDTH: marcas exportadas + CTA -->
+            <div class="pl-alcance-bottom">
+                <div class="pl-alcance-brands fade-in">
+                    <p class="section-eyebrow" style="justify-content:center;color:var(--c-accent);">Marcas que exportamos</p>
+                    <div class="pl-brands-hero-grid">
+                        <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/la-pierre.png" alt="La Pierre" loading="lazy" /></div>
+                        <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/fazenda-sedrez.png" alt="Fazenda Sedrez" loading="lazy" /></div>
+                        <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/aster.png" alt="Áster" loading="lazy" /></div>
+                        <div class="pl-brand-hero"><img src="assets/images/clientes_internacionais/nuestra-cocina.png" alt="Nuestra Cocina" loading="lazy" /></div>
+                    </div>
+                </div>
+
+                <div class="pl-alcance-cta fade-in">
+                    <a href="contato.html" class="btn btn-solid-accent">Fale Conosco <span class="btn-arrow">→</span></a>
+                </div>
             </div>
         </div>
     </section>
@@ -274,57 +285,61 @@
             .pl-stat-item:not(:last-child)::after { display: none; }
         }
 
-        /* ═══ Alcance Global — herói da página com mapa-mundi de background ═══ */
+        /* ═══ Alcance Global — layout duas colunas: mapa clean + conteudo ═══ */
         .pl-alcance-global {
-            position: relative;
             padding-block: clamp(4rem, 7vw, 7rem);
-            background-color: var(--c-cream);
-            background-image: url('assets/images/mapa-mercado-internacional.png');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            overflow: hidden;
-        }
-        /* Overlay translúcido com blur — texto sobrepõe o mapa de forma legível
-           mas o mapa ainda é visível "atrás" do blur */
-        .pl-alcance-global::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: rgba(245,241,225,0.32);
-            backdrop-filter: blur(1.5px) saturate(0.95);
-            -webkit-backdrop-filter: blur(1.5px) saturate(0.95);
-            z-index: 1;
-            pointer-events: none;
+            background: var(--c-cream);
         }
         .pl-alcance-global .container {
-            position: relative;
-            z-index: 2;
             display: flex;
             flex-direction: column;
-            gap: clamp(2.5rem, 4vw, 4rem);
+            gap: clamp(3rem, 5vw, 5rem);
         }
-        /* Cada bloco de texto ganha sua propria "pílula" com bg sutil pra reforçar leitura */
+        /* Duas colunas: mapa (esquerda) + conteudo (direita) */
+        .pl-alcance-layout {
+            display: grid;
+            grid-template-columns: 1.15fr 1fr;
+            gap: clamp(2.5rem, 5vw, 5rem);
+            align-items: center;
+        }
+        .pl-alcance-map img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 14px;
+            box-shadow: 0 16px 40px rgba(38,78,54,0.18);
+        }
+        .pl-alcance-content {
+            display: flex;
+            flex-direction: column;
+            gap: clamp(2rem, 3vw, 3rem);
+        }
         .pl-alcance-header,
         .pl-alcance-refs {
-            background: rgba(245,241,225,0.82);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            border-radius: 16px;
-            padding: clamp(1.5rem, 3vw, 2.5rem);
+            text-align: left;
         }
-        .pl-alcance-header { text-align: center; }
-        .pl-alcance-refs { text-align: center; max-width: 880px; margin-inline: auto; }
-        .pl-alcance-divider {
-            width: 64px;
-            height: 2px;
-            background: rgba(38,78,54,0.25);
-            margin: 0 auto;
-            border-radius: 100px;
+        .pl-alcance-refs {
+            padding-top: clamp(1.25rem, 2.5vw, 2rem);
+            border-top: 1px solid rgba(38,78,54,0.18);
         }
-        .pl-alcance-brands { text-align: center; }
+        /* Faixa inferior full-width: marcas + CTA */
+        .pl-alcance-bottom {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1.5rem, 2.5vw, 2.5rem);
+            padding-top: clamp(1rem, 2vw, 2rem);
+            border-top: 1px solid rgba(38,78,54,0.12);
+        }
         .pl-alcance-brands .section-eyebrow { margin-bottom: 2rem; }
-        .pl-alcance-cta { text-align: center; margin-top: 0.5rem; }
+
+        @media (max-width: 960px) {
+            .pl-alcance-layout {
+                grid-template-columns: 1fr;
+                gap: clamp(2rem, 4vw, 3rem);
+            }
+            .pl-alcance-header, .pl-alcance-refs { text-align: center; }
+        }
 
         .pl-brands-hero-grid {
             display: grid;
