@@ -83,13 +83,12 @@
             <p class="body-lead fade-in" style="max-width:820px;margin-bottom:1rem;">
                 Referências do mercado já confiam em nossa expertise. Parcerias sólidas e duradouras, com vantagem competitiva real em custos, qualidade e agilidade.
             </p>
-            <!-- TODO: aguarda assets Ana — logos SMU, Estar Bem, Fazenda Sandrez, La Pierre -->
-            <ul class="clientes-cons-list fade-in" style="list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:.75rem 2.5rem;padding:0;margin:0;font-family:var(--f-title);font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--c-accent);font-size:clamp(.85rem,1.1vw,1rem);">
-                <li>SMU</li>
-                <li>Estar Bem</li>
-                <li>Fazenda Sandrez</li>
-                <li>La Pierre</li>
-            </ul>
+            <div class="clientes-cons-grid fade-in">
+                <div class="cliente-cons-item"><img src="assets/images/clientes_internacionais/la-pierre.png" alt="La Pierre" loading="lazy" /></div>
+                <div class="cliente-cons-item"><img src="assets/images/clientes_internacionais/fazenda-sedrez.png" alt="Fazenda Sedrez" loading="lazy" /></div>
+                <div class="cliente-cons-item"><img src="assets/images/clientes_internacionais/aster.png" alt="Áster" loading="lazy" /></div>
+                <div class="cliente-cons-item"><img src="assets/images/clientes_internacionais/nuestra-cocina.png" alt="Nuestra Cocina" loading="lazy" /></div>
+            </div>
         </div>
     </section>
 
@@ -245,6 +244,30 @@
         }
         .export-brand-item:hover img { transform: translateY(-3px); }
         @media (max-width: 760px) { .export-brands-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        /* Clientes Consolidados — mesmos logos dos exportados (sao os clientes
+           de marca propria internacional) */
+        .clientes-cons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(1rem, 2.5vw, 2rem);
+            max-width: 980px;
+            margin-top: 1.25rem;
+            align-items: center;
+        }
+        .cliente-cons-item {
+            display: flex; align-items: center; justify-content: center;
+            min-height: 140px;
+            padding: 0.75rem;
+        }
+        .cliente-cons-item img {
+            max-width: 100%; max-height: 100px;
+            width: auto; height: auto;
+            object-fit: contain;
+            transition: transform .25s var(--ease-out);
+        }
+        .cliente-cons-item:hover img { transform: translateY(-3px); }
+        @media (max-width: 760px) { .clientes-cons-grid { grid-template-columns: repeat(2, 1fr); } }
     </style>
 
     <!-- CTA -->
