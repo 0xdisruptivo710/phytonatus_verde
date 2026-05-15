@@ -173,6 +173,7 @@
 
         /* Layout enxuto + hover expansivo */
         .brand-block-full {
+            position: relative;
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             min-height: 70vh !important;
             /* Topo ondulado — altura fixa, curva unica e suave (sem 3a cor) */
@@ -191,6 +192,31 @@
             /* Overlap total — onda inteiramente dentro da seçao anterior */
             margin-top: calc(-1 * var(--wave-h));
         }
+
+        /* Faixa full-width com a foto da marca cobrindo a area da onda.
+           Garante que abaixo da curva apareca a foto da marca em ambas as
+           colunas (em vez de "foto na esquerda + cor na direita"). A onda
+           passa a ser uma transicao limpa entre hero/marca-anterior e foto.
+           Fade-out no rodape da faixa suaviza a transicao para as celulas. */
+        .brand-block-full::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: calc(var(--wave-h) + 14px);
+            background-image: var(--brand-photo);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            -webkit-mask-image: linear-gradient(180deg, black 0, black calc(100% - 14px), transparent 100%);
+                    mask-image: linear-gradient(180deg, black 0, black calc(100% - 14px), transparent 100%);
+            z-index: 3;
+            pointer-events: none;
+        }
+        .brand-tone-mel     { --brand-photo: url('assets/images/brand-block-mel.jpg'); }
+        .brand-tone-nuts    { --brand-photo: url('assets/images/brand-block-nuts.jpg'); }
+        .brand-tone-phyto   { --brand-photo: url('assets/images/brand-phytonatus.jpg'); }
+        .brand-tone-gourmet { --brand-photo: url('assets/images/brand-block-gourmet.jpg'); }
+
         /* .wavy-top-section global — definida em assets/css/style.css */
         /* Onda vertical entre foto e info — diferente das ondas horizontais.
            Comeca abaixo da onda de topo (var(--wave-h)) para nao gerar
