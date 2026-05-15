@@ -276,6 +276,27 @@ button { cursor: pointer; font-family: var(--f-body); }
     border-color: var(--c-border-l);
 }
 
+/* Tagline absoluta no canto superior-esquerdo do hero (Phytonatus) */
+.hero-tagline-top {
+    position: absolute;
+    top: calc(var(--nav-h) + clamp(1.25rem, 2.5vw, 2.25rem));
+    left: clamp(1.5rem, 4vw, 3.5rem);
+    z-index: 5;
+    margin: 0;
+    max-width: 480px;
+    color: var(--c-cream);
+    font-family: var(--f-title);
+    font-weight: 400;
+    font-style: italic;
+    font-size: clamp(0.95rem, 1.4vw, 1.2rem);
+    letter-spacing: 0.04em;
+    line-height: 1.45;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+}
+@media (max-width: 760px) {
+    .hero-tagline-top { max-width: 280px; font-size: 0.92rem; top: calc(var(--nav-h) + 1rem); left: 1.25rem; }
+}
+
 /* Botão Catálogo no header — download direto */
 .nav-cta-catalog {
     font-family: var(--f-title);
@@ -299,10 +320,11 @@ button { cursor: pointer; font-family: var(--f-body); }
 .logo {
     font-family: var(--f-title);
     font-size: 1.25rem; font-weight: 700;
-    letter-spacing: 0.14em; color: var(--c-cream);
+    letter-spacing: 0.14em; color: var(--c-dark);
     transition: color .3s; text-transform: uppercase;
 }
 #header.light .logo { color: var(--c-dark); }
+#header.scrolled .logo { color: var(--c-cream); }
 .logo.logo-img { display: inline-flex; align-items: center; padding: 0; }
 .logo.logo-img img {
     height: 42px;
@@ -310,25 +332,28 @@ button { cursor: pointer; font-family: var(--f-body); }
     display: block;
 }
 
-.nav-links { display: flex; align-items: center; gap: 2.5rem; list-style: none; }
+.nav-links { display: flex; align-items: center; gap: clamp(1.25rem, 2vw, 2.25rem); list-style: none; flex-wrap: nowrap; }
 .nav-links a {
     font-family: var(--f-title);
-    font-size: 0.72rem; letter-spacing: 0.14em;
-    text-transform: uppercase; font-weight: 500;
-    color: rgba(245,241,225,0.65); transition: color .2s;
+    font-size: 0.74rem; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600;
+    color: var(--c-dark); transition: color .2s;
     position: relative;
+    white-space: nowrap;
 }
 .nav-links a::after {
     content: ''; position: absolute; bottom: -3px; left: 0;
     width: 0; height: 2px; background: var(--c-accent);
     transition: width .3s var(--ease-out);
 }
-.nav-links a:hover { color: var(--c-cream); }
+.nav-links a:hover { color: var(--c-accent); }
 .nav-links a:hover::after { width: 100%; }
 .nav-links a.active { color: var(--c-accent); }
 .nav-links a.active::after { width: 100%; }
-#header.light .nav-links a { color: var(--c-muted-l); }
-#header.light .nav-links a:hover { color: var(--c-dark); }
+#header.light .nav-links a { color: var(--c-dark); }
+#header.light .nav-links a:hover { color: var(--c-accent); }
+#header.scrolled .nav-links a { color: rgba(245,241,225,0.75); }
+#header.scrolled .nav-links a:hover { color: var(--c-cream); }
 
 .nav-cta {
     font-family: var(--f-title);
@@ -343,8 +368,9 @@ button { cursor: pointer; font-family: var(--f-body); }
 
 /* Hamburger */
 .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 6px; }
-.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--c-cream); transition: all .3s; }
+.hamburger span { display: block; width: 22px; height: 1.5px; background: var(--c-dark); transition: all .3s; }
 #header.light .hamburger span { background: var(--c-bg-escuro); }
+#header.scrolled .hamburger span { background: var(--c-cream); }
 .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
@@ -452,11 +478,17 @@ footer {
     height: 80px;
     object-fit: contain;
     mix-blend-mode: multiply;
-    filter: saturate(0.95);
+    filter: saturate(0.95) contrast(1.05);
+    transition: transform .25s var(--ease-out);
 }
-/* Suaviza fundo branco dos PNGs Amazon/Mercado Livre */
-.loja-card { padding: 1.25rem 1rem; background: transparent; border-radius: 12px; transition: background .25s; }
-.loja-card:hover { background: rgba(38,78,54,0.04); }
+/* Card sempre transparente — multiply do logo bleacha o fundo branco do PNG */
+.loja-card {
+    padding: 1.25rem 1rem;
+    background: transparent !important;
+    border-radius: 12px;
+    transition: transform .25s var(--ease-out);
+}
+.loja-card:hover .loja-card-logo { transform: translateY(-3px); }
 .loja-card-name {
     font-family: var(--f-title);
     font-size: 1.05rem;
@@ -515,15 +547,12 @@ footer.footer--light .footer-socials-list { display: flex; flex-direction: row; 
 footer.footer--light .footer-socials-list a {
     display: inline-flex; align-items: center; justify-content: center;
     width: 44px; height: 44px;
-    color: var(--c-dark);
-    transition: color .2s, transform .2s, background .2s;
-    border-radius: 50%;
+    transition: transform .2s, filter .2s;
+    border-radius: 8px;
+    overflow: hidden;
 }
-footer.footer--light .footer-socials-list a[aria-label="Instagram"]:hover { color: #fff; background: #E1306C; }
-footer.footer--light .footer-socials-list a[aria-label="LinkedIn"]:hover  { color: #fff; background: #0A66C2; }
-footer.footer--light .footer-socials-list a[aria-label="YouTube"]:hover   { color: #fff; background: #FF0000; }
-footer.footer--light .footer-socials-list a:hover { transform: translateY(-2px); }
-footer.footer--light .footer-socials-list svg { width: 28px; height: 28px; flex-shrink: 0; stroke-width: 1.8; }
+footer.footer--light .footer-socials-list a:hover { transform: translateY(-3px); filter: brightness(1.1); }
+footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-shrink: 0; display: block; }
 
 /* ── Botão flutuante de Loja Online (presente em todas páginas) ── */
 .floating-shop-btn {
