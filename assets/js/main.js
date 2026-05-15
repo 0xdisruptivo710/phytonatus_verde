@@ -50,20 +50,24 @@ document.addEventListener('DOMContentLoaded', () => {
             cx = e.clientX; cy = e.clientY;
             if (!trailLayer) return;
             const dx = cx - lastTrailX, dy = cy - lastTrailY;
-            if (dx * dx + dy * dy > 400) {
+            // Spawn ~3 abelhinhas no rastro: threshold maior + fade rápido
+            if (dx * dx + dy * dy > 2500) {
                 spawnTrailDot(cx, cy);
                 lastTrailX = cx; lastTrailY = cy;
             }
         }, { passive: true });
 
         function spawnTrailDot(x, y) {
+            // Limita a 3 abelhinhas ativas no rastro
+            const existing = trailLayer.querySelectorAll('.cursor-trail-dot:not(.fade)');
+            if (existing.length >= 3) return;
             const dot = document.createElement('span');
             dot.className = 'cursor-trail-dot';
             dot.style.left = x + 'px';
             dot.style.top = y + 'px';
             trailLayer.appendChild(dot);
             requestAnimationFrame(() => dot.classList.add('fade'));
-            setTimeout(() => dot.remove(), 900);
+            setTimeout(() => dot.remove(), 700);
         }
 
         (function animateCursor() {

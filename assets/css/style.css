@@ -139,17 +139,19 @@ button { cursor: pointer; font-family: var(--f-body); }
 .cursor-trail-layer { position: fixed; inset: 0; pointer-events: none; z-index: 9998; }
 .cursor-trail-dot {
     position: fixed;
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(241,181,0,.95) 0%, rgba(241,181,0,.55) 45%, rgba(241,181,0,0) 100%);
+    width: 22px;
+    height: 22px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cellipse cx='16' cy='20' rx='6' ry='8' fill='%23F1B500' stroke='%232C1B0A' stroke-width='1.4'/%3E%3Crect x='11' y='16' width='10' height='2' fill='%232C1B0A'/%3E%3Crect x='11' y='21' width='10' height='2' fill='%232C1B0A'/%3E%3Cellipse cx='16' cy='11' rx='3.5' ry='3' fill='%232C1B0A'/%3E%3Cellipse cx='9' cy='15' rx='5' ry='2.5' fill='white' opacity='.85' transform='rotate(-25 9 15)'/%3E%3Cellipse cx='23' cy='15' rx='5' ry='2.5' fill='white' opacity='.85' transform='rotate(25 23 15)'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
     transform: translate(-50%, -50%) scale(1);
     opacity: 1;
-    transition: opacity 1s ease-out, transform 1s ease-out;
+    transition: opacity .7s ease-out, transform .7s ease-out;
     pointer-events: none;
     will-change: opacity, transform;
 }
-.cursor-trail-dot.fade { opacity: 0; transform: translate(-50%, -50%) scale(.25); }
+.cursor-trail-dot.fade { opacity: 0; transform: translate(-50%, -50%) scale(.4) rotate(20deg); }
 @media (hover: none), (max-width: 760px) {
     .cursor, .cursor-dot, .cursor-trail-layer { display: none !important; }
     a, button { cursor: auto; }
@@ -261,18 +263,35 @@ button { cursor: pointer; font-family: var(--f-body); }
     height: var(--nav-h); z-index: 1000;
     display: flex; align-items: center;
     transition: background .4s, border-color .4s;
-    border-bottom: 1px solid transparent;
+    background: rgba(245,241,225,0.97);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--c-border-l);
 }
 #header.scrolled {
     background: rgba(38,78,54,0.96);
-    backdrop-filter: blur(12px);
     border-color: var(--c-border-d);
 }
 #header.light {
     background: rgba(245,241,225,0.97);
-    backdrop-filter: blur(12px);
     border-color: var(--c-border-l);
 }
+
+/* Botão Catálogo no header — download direto */
+.nav-cta-catalog {
+    font-family: var(--f-title);
+    font-size: 0.68rem; letter-spacing: 0.14em;
+    text-transform: uppercase; font-weight: 600;
+    padding: 9px 22px;
+    border: 1.5px solid var(--c-accent);
+    border-radius: 100px;
+    color: var(--c-accent);
+    background: transparent;
+    transition: all .25s;
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+}
+.nav-cta-catalog:hover { background: var(--c-accent); color: #fff; }
+.nav-cta-catalog .arrow-dl { font-size: 0.95rem; line-height: 1; transform: translateY(1px); }
 .header-inner {
     width: min(1280px,94%); margin-inline: auto;
     display: flex; align-items: center; justify-content: space-between;
@@ -429,13 +448,15 @@ footer {
 }
 .loja-card:hover { transform: translateY(-3px); }
 .loja-card-logo {
-    max-width: 240px;
-    max-height: 110px;
-    width: auto;
-    height: auto;
+    width: 200px;
+    height: 80px;
     object-fit: contain;
     mix-blend-mode: multiply;
+    filter: saturate(0.95);
 }
+/* Suaviza fundo branco dos PNGs Amazon/Mercado Livre */
+.loja-card { padding: 1.25rem 1rem; background: transparent; border-radius: 12px; transition: background .25s; }
+.loja-card:hover { background: rgba(38,78,54,0.04); }
 .loja-card-name {
     font-family: var(--f-title);
     font-size: 1.05rem;
@@ -490,19 +511,19 @@ footer.footer--light .footer-nav-col a.footer-sac { color: var(--c-accent); bord
 footer.footer--light .footer-copy { color: var(--c-muted-l); }
 footer.footer--light .footer-policy-link { color: var(--c-muted-l); border-color: rgba(0,0,0,.15); }
 footer.footer--light .footer-policy-link:hover { color: var(--c-dark); border-color: var(--c-dark); background: rgba(0,0,0,.04); }
-footer.footer--light .footer-socials-list { display: flex; flex-direction: column; gap: .55rem; }
+footer.footer--light .footer-socials-list { display: flex; flex-direction: row; gap: 1rem; align-items: center; }
 footer.footer--light .footer-socials-list a {
-    display: inline-flex; align-items: center; gap: .65rem;
-    font-size: .82rem; color: var(--c-dark); opacity: .8;
-    text-transform: none; letter-spacing: 0;
-    transition: color .2s, opacity .2s;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 44px; height: 44px;
+    color: var(--c-dark);
+    transition: color .2s, transform .2s, background .2s;
+    border-radius: 50%;
 }
-footer.footer--light .footer-socials-list a { opacity: 1; }
-footer.footer--light .footer-socials-list a[aria-label="Instagram"] { color: #E1306C; }
-footer.footer--light .footer-socials-list a[aria-label="LinkedIn"]  { color: #0A66C2; }
-footer.footer--light .footer-socials-list a[aria-label="YouTube"]   { color: #FF0000; }
-footer.footer--light .footer-socials-list a:hover { transform: translateX(2px); }
-footer.footer--light .footer-socials-list svg { width: 18px; height: 18px; flex-shrink: 0; }
+footer.footer--light .footer-socials-list a[aria-label="Instagram"]:hover { color: #fff; background: #E1306C; }
+footer.footer--light .footer-socials-list a[aria-label="LinkedIn"]:hover  { color: #fff; background: #0A66C2; }
+footer.footer--light .footer-socials-list a[aria-label="YouTube"]:hover   { color: #fff; background: #FF0000; }
+footer.footer--light .footer-socials-list a:hover { transform: translateY(-2px); }
+footer.footer--light .footer-socials-list svg { width: 28px; height: 28px; flex-shrink: 0; stroke-width: 1.8; }
 
 /* ── Botão flutuante de Loja Online (presente em todas páginas) ── */
 .floating-shop-btn {
