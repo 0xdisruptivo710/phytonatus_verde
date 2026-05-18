@@ -9,9 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // ── Preloader ─────────────────────────────────────────
     const preloader = document.getElementById('preloader');
-    const preloaderLine = document.querySelector('.preloader-line');
-    if (preloader && preloaderLine) {
-        setTimeout(() => { preloaderLine.style.width = '100%'; }, 100);
+    if (preloader) {
         setTimeout(() => { preloader.classList.add('done'); }, 1000);
     }
 

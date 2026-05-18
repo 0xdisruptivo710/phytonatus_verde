@@ -243,12 +243,6 @@ button { cursor: pointer; font-family: var(--f-body); }
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-.preloader-line {
-    width: 0; height: 2px;
-    background: var(--c-accent);
-    transition: width .8s var(--ease-out);
-    position: relative; z-index: 1;
-}
 /* Legado — esconder elementos antigos */
 .preloader-logo, .preloader-floral { display: none !important; }
 @media (max-width: 600px) {
@@ -693,7 +687,7 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
     background: var(--c-bg-escuro);
     display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden;
 }
-.hero.hero-top-aligned { justify-content: flex-start; padding-top: clamp(8rem, 14vh, 12rem); padding-left: clamp(1.5rem, 5vw, 5rem); padding-right: clamp(1.5rem, 5vw, 5rem); padding-bottom: clamp(3rem, 6vw, 6rem); align-items: flex-start; }
+.hero.hero-top-aligned { justify-content: flex-start; padding-top: clamp(8rem, 14vh, 12rem); padding-bottom: clamp(3rem, 6vw, 6rem); align-items: flex-start; }
 
 /* ── Hero com video de fundo (performance-aware) ── */
 .hero-video {
@@ -722,9 +716,11 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 .hero.grain::after { z-index: 2; }
 .hero-content {
     position: relative; z-index: 3;
-    width: min(1280px,94%); margin-inline: auto;
+    width: 100%; max-width: 1180px; margin-inline: 0;
+    padding-inline: clamp(1.5rem, 5vw, 5rem);
     padding-bottom: clamp(60px,8vh,100px);
     padding-top: calc(var(--nav-h) + 60px);
+    text-align: left;
 }
 .hero-eyebrow {
     display: flex; align-items: center; gap: 1rem;
@@ -741,10 +737,11 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
     text-shadow: 0 2px 18px rgba(0,0,0,0.55);
 }
 .hero-content p { text-shadow: 0 1px 10px rgba(0,0,0,0.5); }
-.hero-title.hero-title-xl {
-    font-size: clamp(4.2rem, 12vw, 12rem);
+.hero-title.hero-title-home {
+    font-size: clamp(2.4rem, 5.4vw, 5.6rem);
     font-weight: 500;
     letter-spacing: -.02em;
+    line-height: 1.05;
 }
 .hero-title em { font-style: normal; color: var(--c-accent); font-weight: 600; }
 .hero-footer {
