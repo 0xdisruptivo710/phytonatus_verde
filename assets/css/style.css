@@ -8,26 +8,37 @@
 /* ── Design Tokens ──────────────────────────────────────── */
 :root {
     /* Escuros — usados APENAS em texto */
-    --c-dark:   #2C1B0A;  /* Marrom Chocolate 4625 C — texto */
+    --c-dark:   #2C1B0A;  /* Marrom Chocolate 4625 C — texto principal, logos, linhas */
     --c-dark-2: #2C1B0A;
     --c-dark-3: #2C1B0A;
 
-    /* Fundos escuros — Verde Escuro Pantone 350 C (paleta oficial) */
-    --c-bg-escuro:   #264E36;
-    --c-bg-escuro-2: #1F4030;
-    --c-bg-escuro-3: #173025;
+    /* Fundos escuros — Verde Escuro Pantone 350 C (único acento) */
+    --c-bg-escuro:   #264E36;  /* CTAs, foco, nav ativa, fundos escuros */
+    --c-bg-escuro-2: #1F4030;  /* hover/active, canvas do rodapé */
+    --c-bg-escuro-3: #173025;  /* pressed state, scrims de modal */
 
-    /* Beges / Creams (Paleta Natural — Pantone do briefing) */
-    --c-cream:   #DDD7C7;   /* Bege Principal Pantone 7527 C */
-    --c-cream-2: #DCC9A0;   /* Bege Contraste Pantone 468 C  */
+    /* Shell — base que carrega o site todo */
+    --c-cream:   #FBFAF6;   /* Off-white quente — BG principal e texto-creme sobre escuro */
+    --c-cream-2: #E8EED6;   /* Sage washed — faixas alternadas, lavagem verde sutil */
 
     /* Bordas */
-    --c-border-d: rgba(255,255,255,0.09);
-    --c-border-l: rgba(26,18,8,0.12);
+    --c-border-d: rgba(255,255,255,0.09);  /* linhas 1px sobre superfícies verdes */
+    --c-border-l: rgba(26,18,8,0.12);      /* linhas 1px sobre superfícies claras */
 
     /* Acento principal — Verde Escuro Pantone 350 C */
     --c-accent:       #264E36;
     --c-accent-light: #D2E3B4;  /* Verde Claro Pantone 7485 C */
+
+    /* Verdes — protagonistas (4 níveis crescentes de presença) */
+    --c-sage-soft:  #DCE3D0;  /* cards sobre cream, divisões intermediárias */
+    --c-sage-mid:   #7A9870;  /* accents pontuais, borders de destaque, badges */
+    --c-sage-light: #D2E3B4;  /* Verde 7485 C — blocos de ênfase, dots, highlights */
+
+    /* Bege — agora APENAS em detalhes finos */
+    --c-detail-beige:        rgba(220,201,160,0.55);  /* hairlines, separadores */
+    --c-detail-beige-strong: rgba(220,201,160,0.85);  /* destaques pontuais sobre branco */
+    --c-beige-soft:          #DDD7C7;  /* Bege 7527 — uso pontual preservado */
+    --c-beige-warm:          #DCC9A0;  /* Bege 468 — uso pontual preservado */
 
     /* Paleta de elementos gerais (briefing oficial) */
     --c-verde-escuro-350:  #264E36;  /* Pantone 350 C  */
@@ -200,7 +211,7 @@ button { cursor: pointer; font-family: var(--f-body); }
 /* ── Preloader fullscreen autoral (botanical reveal) ──── */
 #preloader {
     position: fixed; inset: 0;
-    background: radial-gradient(ellipse at 50% 38%, #FCF8E6 0%, var(--c-cream) 45%, #E8DFC2 100%);
+    background: radial-gradient(ellipse at 50% 38%, #FFFFFF 0%, var(--c-cream) 45%, var(--c-cream-2) 100%);
     z-index: 9000;
     display: flex; align-items: center; justify-content: center;
     transition: opacity .8s, visibility .8s;
@@ -608,10 +619,10 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 .wavy-top-section {
     --wave-h: clamp(52px, 5.5vw, 80px);
     -webkit-mask-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C120,4 240,4 360,40 C480,76 600,76 720,40 C840,4 960,4 1080,40 C1200,76 1320,76 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
         linear-gradient(#fff, #fff);
             mask-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,44 C280,2 1160,78 1440,36 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C120,4 240,4 360,40 C480,76 600,76 720,40 C840,4 960,4 1080,40 C1200,76 1320,76 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
         linear-gradient(#fff, #fff);
     -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
             mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
