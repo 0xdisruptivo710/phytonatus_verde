@@ -119,19 +119,16 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ── GSAP Animations ───────────────────────────────────
-    if (typeof gsap === 'undefined') return;
+    // Fallback: se o GSAP nao carregar (CDN bloqueado/offline), revela todo
+    // o conteudo que depende dele em vez de deixar a pagina invisivel.
+    if (typeof gsap === 'undefined') {
+        document.querySelectorAll('.fade-in').forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+        document.querySelectorAll('.clip-reveal').forEach(el => { el.style.clipPath = 'none'; });
+        return;
+    }
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero title reveal (line by line)
-    const heroLines = document.querySelectorAll('.hero-title .reveal-inner');
-    if (heroLines.length) {
-        // Esconde imediatamente (antes do paint) e anima após preloader
-        gsap.set(heroLines, { yPercent: 110, rotate: 1 });
-        gsap.to(heroLines, {
-            yPercent: 0, rotate: 0, duration: 1.1, ease: 'expo.out',
-            stagger: 0.12, delay: 1.0
-        });
-    }
+    // Headline = texto puro e sempre visivel (sem animacao de reveal).
 
 
     // Hero footer fade
