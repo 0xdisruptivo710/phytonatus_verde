@@ -70,10 +70,11 @@
                 <aside class="contato-aside fade-in">
                     <div class="section-eyebrow">Phytonatus</div>
                     <h2>Parcerias sólidas,<br>construídas com confiança.</h2>
-                    <p class="body-lead" style="margin-bottom:1.5rem;">
-                        Há mais de duas décadas, atuamos com consistência e credibilidade, desenvolvendo relações duradouras e orientadas a resultados.
+                    <p class="body-lead" style="margin-bottom:1.5rem;font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.6;">
+                        Há mais de duas décadas, atuamos com consistência e credibilidade.<br>
+                        Desenvolvendo relações duradouras e orientadas a resultados.
                     </p>
-                    <p class="body-lead" style="margin-bottom:2rem;">
+                    <p class="body-lead" style="margin-bottom:2rem;font-size:clamp(1.2rem,1.7vw,1.45rem);line-height:1.6;">
                         Entre em contato e descubra como podemos crescer juntos.
                     </p>
 
@@ -102,17 +103,35 @@
                             </svg>
                             <span>R. Eng. Carlos Alberto Calandrino, 209 — Iporanga, Sorocaba — SP, 18087-161</span>
                         </div>
-                        <div class="contato-info-item">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="3" width="20" height="14" rx="2" />
-                                <line x1="8" y1="21" x2="16" y2="21" />
-                                <line x1="12" y1="17" x2="12" y2="21" />
-                            </svg>
-                            <span><a href="https://www.instagram.com/phytonatus/" target="_blank" rel="noopener"
-                                    style="color:var(--c-accent)">@phytonatus</a></span>
+                    </div>
+
+                    <div class="contato-socials" aria-label="Redes sociais">
+                        <p class="section-eyebrow" style="margin-bottom:.85rem;">Redes sociais</p>
+                        <div class="contato-socials-list">
+                            <a href="https://www.instagram.com/phytonatus/" target="_blank" rel="noopener" aria-label="Instagram">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><defs><linearGradient id="ig-grad-contato" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" stop-color="#FED576"/><stop offset="26%" stop-color="#F47133"/><stop offset="61%" stop-color="#BC3081"/><stop offset="100%" stop-color="#4C63D2"/></linearGradient></defs><rect x="1" y="1" width="22" height="22" rx="6" ry="6" fill="url(#ig-grad-contato)"/><rect x="5" y="5" width="14" height="14" rx="4" ry="4" fill="none" stroke="white" stroke-width="1.8"/><circle cx="12" cy="12" r="3.5" fill="none" stroke="white" stroke-width="1.8"/><circle cx="17" cy="7" r="1.1" fill="white"/></svg>
+                            </a>
+                            <a href="https://www.linkedin.com/company/phytonatus/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect width="24" height="24" rx="4" ry="4" fill="#0A66C2"/><path d="M5 9.5h3V19H5z" fill="white"/><circle cx="6.5" cy="6.5" r="1.7" fill="white"/><path d="M10 9.5h2.8v1.4c.5-.9 1.6-1.6 3.2-1.6 2.6 0 4 1.6 4 4.6V19h-3v-4.4c0-1.3-.5-2.1-1.7-2.1-1.3 0-1.9.9-1.9 2.1V19h-3z" fill="white"/></svg>
+                            </a>
+                            <a href="http://www.youtube.com/channel/UCMi3C9o_hySFlxIveNttSZA" target="_blank" rel="noopener" aria-label="YouTube">
+                                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="0.5" y="5" width="23" height="14" rx="4" ry="4" fill="#FF0000"/><polygon points="10,8.5 10,15.5 16,12" fill="white"/></svg>
+                            </a>
                         </div>
                     </div>
+
+                    <style>
+                        .contato-socials { margin-top: 1.75rem; }
+                        .contato-socials-list { display: flex; gap: .85rem; align-items: center; }
+                        .contato-socials-list a {
+                            width: 38px; height: 38px;
+                            display: inline-flex; align-items: center; justify-content: center;
+                            border-radius: 8px;
+                            transition: transform .25s var(--ease-out);
+                        }
+                        .contato-socials-list a:hover { transform: translateY(-3px); }
+                        .contato-socials-list svg { width: 100%; height: 100%; display: block; }
+                    </style>
 
                 </aside>
 

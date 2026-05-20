@@ -103,7 +103,7 @@
     --r-lg:   21px;
 
     /* Layout */
-    --nav-h:    76px;
+    --nav-h:    88px;
     --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -356,7 +356,7 @@ button { cursor: pointer; font-family: var(--f-body); }
 #header.scrolled .logo { color: var(--c-cream); }
 .logo.logo-img { display: inline-flex; align-items: center; padding: 0; }
 .logo.logo-img img {
-    height: 42px;
+    height: 58px;
     width: auto;
     display: block;
 }
@@ -627,10 +627,10 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 .wavy-top-section {
     --wave-h: clamp(52px, 5.5vw, 80px);
     -webkit-mask-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C120,4 240,4 360,40 C480,76 600,76 720,40 C840,4 960,4 1080,40 C1200,76 1320,76 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C480,28 960,78 1440,55 L1440,80 L0,80 Z' fill='white'/></svg>"),
         linear-gradient(#fff, #fff);
             mask-image:
-        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,40 C120,4 240,4 360,40 C480,76 600,76 720,40 C840,4 960,4 1080,40 C1200,76 1320,76 1440,40 L1440,80 L0,80 Z' fill='white'/></svg>"),
+        url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C480,28 960,78 1440,55 L1440,80 L0,80 Z' fill='white'/></svg>"),
         linear-gradient(#fff, #fff);
     -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
             mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
@@ -640,6 +640,7 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
     /* Overlap total: a onda fica inteiramente dentro da secao anterior,
        eliminando a "terceira cor" do body bleeding por baixo */
     margin-top: calc(-1 * var(--wave-h));
+    padding-top: calc(var(--wave-h) + clamp(1.5rem, 3vw, 2.5rem));
     position: relative; z-index: 1;
 }
 
@@ -837,15 +838,33 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 ═══════════════════════════════════════════════════════════ */
 .brands-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 3px; }
 .brand-card { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--c-bg-escuro-2); }
-.brand-card img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease-out); will-change: transform; }
-.brand-card:hover img { transform: scale(1.07); }
+.brand-card > img { width: 100%; height: 100%; object-fit: cover; transition: transform .9s var(--ease-out); will-change: transform; }
+.brand-card:hover > img { transform: scale(1.12); }
 .brand-card-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.1) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,.55) 0%, rgba(0,0,0,.25) 50%, rgba(0,0,0,.2) 100%);
     transition: background .5s;
 }
 .brand-card:hover .brand-card-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,.65) 0%, rgba(0,0,0,.25) 60%, transparent 100%);
+    background: linear-gradient(to top, rgba(0,0,0,.35) 0%, rgba(0,0,0,.05) 50%, transparent 100%);
+}
+.brand-card-logo-wrap {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    pointer-events: none;
+    transition: opacity .5s var(--ease-out), transform .5s var(--ease-out);
+}
+.brand-card-logo {
+    max-width: 65%;
+    max-height: 55%;
+    width: auto; height: auto;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 18px rgba(0,0,0,.35));
+}
+.brand-card:hover .brand-card-logo-wrap {
+    opacity: 0;
+    transform: scale(.94);
 }
 .brand-card-content {
     position: absolute; inset: 0;
@@ -1010,7 +1029,7 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 .brand-block-full.reverse { direction: rtl; }
 .brand-block-full.reverse > * { direction: ltr; }
 .brand-block-img { position: relative; overflow: hidden; background: var(--c-bg-escuro-2); }
-.brand-block-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 10s linear; }
+.brand-block-img img { width: 100%; height: 100%; object-fit: cover; object-position: center center; transition: transform 10s linear; }
 .brand-block-full:hover .brand-block-img img { transform: scale(1.04); }
 .brand-block-info { display: flex; flex-direction: column; justify-content: center; padding: clamp(3rem,6vw,8rem) clamp(2.5rem,5vw,7rem); }
 .brand-block-info.dark  { background: var(--c-bg-escuro-2); }
@@ -1152,8 +1171,8 @@ textarea.float-input { min-height: 130px; resize: vertical; }
 .av-hero__title em { font-style: normal; color: var(--c-amber-soft); }
 .av-hero__lead {
     font-family: var(--f-body);
-    font-size: clamp(1.04rem, 1.5vw, 1.28rem); line-height: 1.55;
-    max-width: 31rem; color: rgba(245,241,225,.92);
+    font-size: clamp(1.18rem, 1.75vw, 1.45rem); line-height: 1.55;
+    max-width: 36rem; color: rgba(245,241,225,.95);
     text-shadow: 0 1px 12px rgba(0,0,0,.55);
     margin-bottom: clamp(1.6rem, 3vw, 2.3rem);
 }
