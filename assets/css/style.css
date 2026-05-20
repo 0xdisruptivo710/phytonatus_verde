@@ -3,7 +3,7 @@
    Redesign Brand Identity · Quicksand + Lato · Paleta Natural
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&family=Lato:ital,wght@0,300;0,400;1,300&family=Cormorant+Garamond:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Lato:ital,wght@0,300;0,400;1,300&family=Figtree:wght@400;500;600;700;800&display=swap');
 
 /* ── Design Tokens ──────────────────────────────────────── */
 :root {
@@ -93,6 +93,14 @@
     /* Tipografia */
     --f-title: 'Quicksand', sans-serif;
     --f-body:  'Lato', sans-serif;
+    --f-support: 'Figtree', sans-serif;
+
+    --c-amber:      #C8881E;
+    --c-amber-soft: #E3B25A;
+    --c-cream-soft: #F0E6C5;
+
+    --r-pill: 100px;
+    --r-lg:   21px;
 
     /* Layout */
     --nav-h:    76px;
@@ -1121,3 +1129,79 @@ textarea.float-input { min-height: 130px; resize: vertical; }
     .hero-stats { gap: 1.5rem; }
     .brand-block-actions { flex-direction: column; }
 }
+
+/* ============================================================
+   HERO AV — espelha referência phytonatus-ref01.vercel.app
+   ============================================================ */
+.hero.av-hero { justify-content: center; min-height: 100dvh; }
+.av-hero__inner {
+    position: relative; z-index: 3;
+    width: min(1280px, 92%); margin-inline: auto;
+    padding-top: calc(var(--nav-h) + clamp(1.5rem, 4vh, 3.5rem));
+    padding-bottom: clamp(2.5rem, 6vh, 5rem);
+    color: var(--c-cream);
+}
+.av-hero__title {
+    font-family: var(--f-title); font-weight: 600;
+    font-size: clamp(2.9rem, 8.4vw, 6.6rem); line-height: .9;
+    letter-spacing: -.035em; color: var(--c-cream);
+    text-shadow: 0 2px 26px rgba(0,0,0,.5);
+    margin-bottom: clamp(1.4rem, 3vw, 2.1rem);
+}
+.av-hero__title .av-line { display: block; }
+.av-hero__title em { font-style: normal; color: var(--c-amber-soft); }
+.av-hero__lead {
+    font-family: var(--f-body);
+    font-size: clamp(1.04rem, 1.5vw, 1.28rem); line-height: 1.55;
+    max-width: 31rem; color: rgba(245,241,225,.92);
+    text-shadow: 0 1px 12px rgba(0,0,0,.55);
+    margin-bottom: clamp(1.6rem, 3vw, 2.3rem);
+}
+.av-scroll-cue {
+    position: absolute;
+    left: 50%; transform: translateX(-50%);
+    bottom: clamp(1.1rem, 3vh, 2.1rem);
+    z-index: 4;
+    display: flex; flex-direction: column; align-items: center; gap: .65rem;
+    font-family: var(--f-support);
+    font-size: .58rem; font-weight: 700; letter-spacing: .24em;
+    text-transform: uppercase; color: rgba(245,241,225,.72);
+    pointer-events: none;
+}
+.av-scroll-cue__line {
+    width: 1px; height: 44px;
+    background: rgba(245,241,225,.28);
+    position: relative; overflow: hidden;
+}
+.av-scroll-cue__line::after {
+    content: ''; position: absolute; left: 0; right: 0; top: 0;
+    height: 45%;
+    background: linear-gradient(rgba(227,178,90,0), var(--c-amber-soft));
+    animation: av-scroll-run 2.4s var(--ease-out) infinite;
+}
+@keyframes av-scroll-run {
+    0%   { transform: translateY(-110%); opacity: 0; }
+    35%  { opacity: 1; }
+    100% { transform: translateY(260%); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .av-scroll-cue__line::after { animation: none; opacity: .6; }
+}
+@media (max-width: 760px) { .av-scroll-cue { display: none; } }
+
+/* ── AV Botões ──────────────────────────────────────────── */
+.av-btn {
+    display: inline-flex; align-items: center; gap: .55rem;
+    font-family: var(--f-support);
+    font-size: .72rem; font-weight: 700;
+    letter-spacing: .12em; text-transform: uppercase;
+    padding: .95rem 1.6rem; border-radius: var(--r-pill);
+    border: 1.5px solid transparent;
+    transition: background .25s var(--ease-out), color .25s,
+                border-color .25s, transform .25s;
+}
+.av-btn:hover { transform: translateY(-2px); }
+.av-btn__arrow { transition: transform .25s var(--ease-out); }
+.av-btn:hover .av-btn__arrow { transform: translateX(3px); }
+.av-btn--amber   { background: var(--c-amber); color: #fff; }
+.av-btn--amber:hover { background: #a96f12; }

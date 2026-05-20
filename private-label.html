@@ -49,19 +49,20 @@
     </nav>
 
     <!-- HERO -->
-    <section class="hero grain" style="min-height:70vh;background-image:url('assets/images/hero-private-label.png');background-size:cover;background-position:center;">
-        <div class="hero-content">
-            <h1 class="hero-title">
-                <span class="reveal"><span class="reveal-inner">Sua marca.</span></span>
-                <span class="reveal"><span class="reveal-inner">Nossa expertise.</span></span>
+    <section class="hero av-hero grain" style="min-height:74vh;background-image:url('assets/images/hero-private-label.png');background-size:cover;background-position:center;">
+        <div class="av-hero__inner">
+            <h1 class="av-hero__title">
+                <span class="av-line">Sua marca.</span>
+                <span class="av-line">Nossa <em>expertise</em>.</span>
             </h1>
-            <p
-                style="color:var(--c-cream);font-size:clamp(1.05rem,1.7vw,1.25rem);max-width:640px;line-height:1.7;margin-top:1.5rem;font-weight:500;">
+            <p class="av-hero__lead">
                 Uma estrutura industrial completa, certificação internacional e mais de 20 anos de know-how em produtos naturais para desenvolver sua marca própria.
             </p>
-            <div style="margin-top:2.5rem;">
-                <a href="contato.html" class="btn btn-solid-accent">Fale Conosco <span class="btn-arrow">→</span></a>
-            </div>
+            <a href="contato.html" class="av-btn av-btn--amber" style="margin-top:1.7rem;">Fale conosco <span class="av-btn__arrow">→</span></a>
+        </div>
+        <div class="av-scroll-cue" aria-hidden="true">
+            <span>Explorar</span>
+            <span class="av-scroll-cue__line"></span>
         </div>
     </section>
 
@@ -207,12 +208,17 @@
         .cert-card {
             display: flex; flex-direction: column; align-items: center;
             gap: 0.85rem; text-align: center;
-            padding: 1rem 0.5rem;
-            background: transparent;
-            border: none;
-            transition: transform 0.2s;
+            padding: clamp(1.5rem, 2.2vw, 2rem) clamp(1rem, 1.5vw, 1.4rem);
+            background: var(--c-cream-soft);
+            border: 1px solid var(--c-border-l);
+            border-radius: var(--r-lg);
+            transition: transform .25s var(--ease-out), box-shadow .25s;
+            box-shadow: 0 2px 14px rgba(38,78,54,.05);
         }
-        .cert-card:hover { transform: translateY(-4px); }
+        .cert-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(38,78,54,.10);
+        }
         .cert-card-img {
             width: 130px; height: 130px;
             display: flex; align-items: center; justify-content: center;
