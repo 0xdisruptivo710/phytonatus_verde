@@ -1215,6 +1215,34 @@ textarea.float-input { min-height: 130px; resize: vertical; }
     .hamburger { display: flex; }
     .brands-grid { grid-template-columns: repeat(2,1fr); }
     .brand-card { aspect-ratio: 3/4; }
+    /* Mobile não tem hover — sempre mostrar foto + logo. Overlay vira gradiente
+       parcial que cobre só os ~45% inferiores; foto fica visivel acima e o
+       logo + tagline ficam ancorados no rodape do card. */
+    .brand-card > img { transform: none; }
+    .brand-card-overlay,
+    .brand-card:hover .brand-card-overlay {
+        background: linear-gradient(to top,
+            rgba(252,248,232,.95) 0%,
+            rgba(252,248,232,.88) 30%,
+            rgba(252,248,232,.55) 50%,
+            rgba(252,248,232,.18) 65%,
+            transparent 80%) !important;
+        -webkit-backdrop-filter: none !important;
+                backdrop-filter: none !important;
+    }
+    .brand-card-logo-wrap,
+    .brand-card:hover .brand-card-logo-wrap {
+        justify-content: flex-end !important;
+        padding-bottom: clamp(1.25rem, 4vw, 2rem) !important;
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .brand-card-tagline,
+    .brand-card:hover .brand-card-tagline {
+        opacity: 1 !important;
+        transform: none !important;
+    }
+    .brand-card-logo { max-height: 38%; }
     .stats-grid { grid-template-columns: repeat(2,1fr); }
     .stat-block:nth-child(2) { border-right: none; }
     .stat-block:nth-child(1), .stat-block:nth-child(2) { border-bottom: 1px solid var(--c-border-d); }
