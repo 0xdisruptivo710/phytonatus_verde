@@ -504,7 +504,7 @@ footer {
 .loja-card:hover { transform: translateY(-3px); }
 .loja-card-logo {
     width: auto;
-    height: 110px;
+    height: 88px;
     object-fit: contain;
     mix-blend-mode: multiply;
     filter: saturate(0.95) contrast(1.05);
@@ -512,12 +512,12 @@ footer {
 }
 /* Equilibrio visual: o logo Phytonatus e largo (ratio 1.94), os outros sao
    quadrados (1:1). Alturas diferentes deixam os 3 com presenca parecida. */
-.loja-card-logo--phyto  { height: 78px; }
-.loja-card-logo--amazon { height: 116px; }
-.loja-card-logo--ml     { height: 134px; }
+.loja-card-logo--phyto  { height: 64px; }
+.loja-card-logo--amazon { height: 94px; }
+.loja-card-logo--ml     { height: 108px; }
 /* Card sempre transparente — multiply do logo bleacha o fundo branco do PNG */
 .loja-card {
-    padding: 1.25rem 1rem;
+    padding: 0.75rem 0.85rem;
     background: transparent !important;
     border-radius: 12px;
     transition: transform .25s var(--ease-out);
@@ -894,32 +894,22 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
 /* Default: foto suavemente "respirando" pra fora; no hover ela cresce mais. */
 .brand-card > img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); transition: transform .9s var(--ease-out); will-change: transform; }
 .brand-card:hover > img { transform: scale(1.22); }
-/* Default: overlay escuro + backdrop-filter blur (frosted glass) pra dar
-   contraste forte no logo, mesmo nos logos escuros. Hover: blur some +
-   overlay quase transparente, revelando a foto limpa e ampliada. */
+/* Default: overlay CLARO (creme) + backdrop-filter blur. Funciona com todas
+   as marcas (incluindo logos escuros), criando frosted glass uniforme.
+   Hover: blur some + overlay quase transparente, revela foto limpa e ampliada. */
 .brand-card-overlay {
     position: absolute; inset: 0;
-    background: linear-gradient(to top, rgba(0,0,0,.62) 0%, rgba(0,0,0,.48) 45%, rgba(0,0,0,.32) 100%);
-    -webkit-backdrop-filter: blur(10px) saturate(.9);
-            backdrop-filter: blur(10px) saturate(.9);
+    background: linear-gradient(to top, rgba(252,248,232,.7) 0%, rgba(252,248,232,.55) 45%, rgba(252,248,232,.42) 100%);
+    -webkit-backdrop-filter: blur(12px) saturate(.85);
+            backdrop-filter: blur(12px) saturate(.85);
     transition: background .5s var(--ease-out),
                 -webkit-backdrop-filter .5s var(--ease-out),
                 backdrop-filter .5s var(--ease-out);
 }
 .brand-card:hover .brand-card-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 50%, transparent 100%);
+    background: linear-gradient(to top, rgba(252,248,232,.18) 0%, rgba(252,248,232,.08) 50%, transparent 100%);
     -webkit-backdrop-filter: blur(0) saturate(1);
             backdrop-filter: blur(0) saturate(1);
-}
-/* Mel e Vida Gourmet têm imagens de fundo bem claras; reforçar overlay
-   no estado padrão pra logo escuro ficar legível. */
-.brand-card[href*="emporio-mel"] .brand-card-overlay,
-.brand-card[href*="vida-gourmet"] .brand-card-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.62) 45%, rgba(0,0,0,.45) 100%);
-}
-.brand-card[href*="emporio-mel"]:hover .brand-card-overlay,
-.brand-card[href*="vida-gourmet"]:hover .brand-card-overlay {
-    background: linear-gradient(to top, rgba(0,0,0,.18) 0%, rgba(0,0,0,.08) 50%, transparent 100%);
 }
 .brand-card-logo-wrap {
     position: absolute; inset: 0;
@@ -936,19 +926,19 @@ footer.footer--light .footer-socials-list svg { width: 36px; height: 36px; flex-
     max-height: 48%;
     width: auto; height: auto;
     object-fit: contain;
-    filter: drop-shadow(0 6px 22px rgba(0,0,0,.55));
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,.2));
 }
 .brand-card-tagline {
     margin: 0;
     font-family: var(--f-title);
     font-size: clamp(.95rem, 1.25vw, 1.15rem);
-    font-weight: 400;
-    color: var(--c-cream);
+    font-weight: 500;
+    color: var(--c-dark);
     text-align: center;
     line-height: 1.4;
     max-width: 88%;
     letter-spacing: .01em;
-    text-shadow: 0 2px 14px rgba(0,0,0,.55);
+    text-shadow: 0 1px 6px rgba(255,255,255,.5);
     opacity: 1;
     transform: translateY(0);
     transition: opacity .55s var(--ease-out), transform .55s var(--ease-out);
