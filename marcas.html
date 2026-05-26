@@ -7,7 +7,7 @@
     <title>Nossas Marcas | Phytonatus</title>
     <meta name="description"
         content="Conheça as 4 marcas do Grupo Phytonatus: Phytonatus Mel, Empório do Mel, Empório Nuts e Vida Gourmet. Produtos naturais premium para o mercado B2B." />
-    <link rel="stylesheet" href="assets/css/style.css?v=8" />
+    <link rel="stylesheet" href="assets/css/style.css?v=10" />
 </head>
 
 <body class="page-light">
@@ -61,7 +61,6 @@
             <a href="#" download class="av-btn av-btn--amber" style="margin-top:1.7rem;">Baixar catálogo <span class="av-btn__arrow">↓</span></a>
         </div>
         <div class="av-scroll-cue" aria-hidden="true">
-            <span>Explorar</span>
             <span class="av-scroll-cue__line"></span>
         </div>
     </section>
@@ -69,7 +68,7 @@
 <!-- ═══ EMPÓRIO DO MEL ══════════════════════════════════ -->
     <article id="emporio-mel" class="brand-block-full brand-tone-mel">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/brand-block-mel.png" alt="Empório do Mel — linha completa: méis por florada, bisnagas, sachês, sprays de própolis e mini méis" loading="eager" style="object-fit:cover;" />
+            <img src="assets/images/_originals/ChatGPT%20Image%2026%20de%20mai.%20de%202026%2C%2010_24_59.png" alt="Empório do Mel — linha completa: méis por florada, bisnagas, sachês, sprays de própolis e mini méis" loading="eager" style="object-fit:cover;" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-emporio-mel-novo.png" alt="Logo Empório do Mel" class="brand-logo-lg" loading="lazy" />
@@ -94,7 +93,7 @@
 <!-- ═══ EMPÓRIO NUT'S ════════════════════════════════════ -->
     <article id="emporio-nuts" class="brand-block-full reverse brand-tone-nuts">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/brand-block-nuts.png" alt="Empório Nut's — sal rosa do Himalaia, cacau em pó 100%, derivados de coco, temperos naturais e mix de pimentas" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/nuts.png" alt="Empório Nut's — sal rosa do Himalaia, cacau em pó 100%, derivados de coco, temperos naturais e mix de pimentas" loading="lazy" style="object-fit:cover;" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-emporio-nuts-novo.png" alt="Logo Empório Nut's" class="brand-logo-lg brand-logo-nuts" loading="lazy" />
@@ -119,7 +118,7 @@
 <!-- ═══ PHYTONATUS ═══════════════════════════════════════ -->
     <article id="phytonatus" class="brand-block-full brand-tone-phyto">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/brand-phytonatus.png" alt="Phytonatus — bisnagas tradicionais de mel puro e saudável (1kg, 500g e 200g)" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/phytonatus.png" alt="Phytonatus — bisnagas tradicionais de mel puro e saudável (1kg, 500g e 200g)" loading="lazy" style="object-fit:cover;" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-phytonatus-apicultor.png" alt="Logo Phytonatus Apicultor" class="brand-logo-lg brand-logo-apicultor" loading="lazy" />
@@ -141,7 +140,7 @@
 <!-- ═══ VIDA GOURMET ═════════════════════════════════════ -->
     <article id="vida-gourmet" class="brand-block-full reverse brand-tone-gourmet">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/brand-block-gourmet.png" alt="Vida Gourmet — Chimichurri Receita Tradicional Argentina com Sal Rosa do Himalaia" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/vida%20gourmet.png" alt="Vida Gourmet — Chimichurri Receita Tradicional Argentina com Sal Rosa do Himalaia" loading="lazy" style="object-fit:cover;" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-vida-gourmet-novo.png" alt="Logo Vida Gourmet" class="brand-logo-lg brand-logo-gourmet" loading="lazy" />
@@ -175,32 +174,39 @@
             ) !important;
         }
 
-        /* Layout enxuto + hover expansivo. Article eh um retangulo limpo,
-           SEM mask. A onda divisora vive em um ::before separado abaixo. */
+        /* Cada brand-block é uma "wavy-top-section" — o próprio bloco tem topo
+           ondulado via mask, e puxa pra cima com margin-top: -wave-h pra sobrepor
+           o bloco anterior. Imagem e info ganham a mesma curva no topo, e o bloco
+           anterior aparece pela região cortada da onda — sem faixa, sem gap. */
         .brand-block-full {
             position: relative;
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
+            --wave-h: clamp(110px, 12vw, 180px);
             min-height: 70vh !important;
-            --wave-h: clamp(52px, 5.5vw, 80px);
-        }
-
-        /* Onda divisora: ::before com cor solida da marca, mascarada
-           pela curva. Senta na secao anterior (top: -wave-h), nao toca
-           o conteudo do brand-block. Apenas divide. */
-        .brand-block-full::before {
-            content: '';
-            position: absolute;
-            top: calc(-1 * var(--wave-h));
-            left: 0;
-            right: 0;
-            height: var(--wave-h);
-            background: var(--brand-accent-bg);
-            -webkit-mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C480,28 960,78 1440,55 L1440,80 L0,80 Z' fill='white'/></svg>");
-                    mask-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 80' preserveAspectRatio='none'><path d='M0,55 C480,28 960,78 1440,55 L1440,80 L0,80 Z' fill='white'/></svg>");
-            -webkit-mask-size: 100% 100%; mask-size: 100% 100%;
+            -webkit-mask-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M0,100 C220,-60 480,260 720,100 C960,-60 1220,260 1440,100 L1440,200 L0,200 Z' fill='white'/></svg>"),
+                linear-gradient(#fff, #fff);
+                    mask-image:
+                url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M0,100 C220,-60 480,260 720,100 C960,-60 1220,260 1440,100 L1440,200 L0,200 Z' fill='white'/></svg>"),
+                linear-gradient(#fff, #fff);
+            -webkit-mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+                    mask-size: 100% var(--wave-h), 100% calc(100% - var(--wave-h) + 1px);
+            -webkit-mask-position: top center, bottom center;
+                    mask-position: top center, bottom center;
             -webkit-mask-repeat: no-repeat; mask-repeat: no-repeat;
-            z-index: 5;
-            pointer-events: none;
+            margin-top: calc(-1 * var(--wave-h));
+            padding-top: 0;
+            padding-bottom: 0 !important;
+            z-index: 1;
+        }
+        /* Info centraliza vertical no espaço útil. O padding-top maior
+           (definido mais abaixo) empurra o conteúdo abaixo da onda recortada. */
+        .brand-block-info {
+            justify-content: center !important;
+        }
+        /* Onda divisora ::before — não é mais necessária, o próprio bloco tem o recorte. */
+        .brand-block-full::before {
+            display: none !important;
         }
         .brand-tone-mel     { --brand-accent-bg: var(--c-mel-amarelo-2); }
         .brand-tone-nuts    { --brand-accent-bg: var(--c-nuts-bege-2); }
@@ -252,12 +258,14 @@
         .brand-block-full .brand-block-img:hover img { transform: scale(1.08) !important; }
         .brand-block-full .brand-block-img,
         .brand-block-full .brand-block-info { transition: flex .7s, padding .7s; }
-        /* Padding interno — onda esta fora do article. Padding moderado
-           e simetrico para respiro visual. */
+        /* Padding interno — top E bottom maiores: o top mantém o conteúdo
+           abaixo da onda recortada no próprio bloco; o bottom mantém o conteúdo
+           (botão Tabela Nutricional) acima da onda do próximo bloco (que sobrepõe
+           via margin-top:-wave-h). */
         .brand-block-info {
             text-align: center;
             align-items: center;
-            padding: clamp(2.5rem, 4vw, 4rem) clamp(0.75rem,1.5vw,1.5rem) !important;
+            padding: calc(var(--wave-h) + clamp(2.5rem, 4vw, 4rem)) clamp(0.75rem,1.5vw,1.5rem) calc(var(--wave-h) + clamp(2.5rem, 4vw, 4rem)) !important;
         }
         .brand-block-info > * { width: 100%; max-width: 640px; }
         .brand-block-info .brand-block-products,
@@ -272,8 +280,8 @@
             margin: 0 auto 1.5rem;
             display: block;
         }
-        .brand-logo-apicultor,
-        .brand-logo-nuts { width: clamp(320px, 38vw, 460px); height: clamp(160px, 18vw, 220px); aspect-ratio: auto; }
+        .brand-logo-apicultor { width: clamp(320px, 38vw, 460px); height: clamp(160px, 18vw, 220px); aspect-ratio: auto; }
+        .brand-logo-nuts { width: clamp(220px, 26vw, 320px); height: clamp(300px, 34vw, 420px); aspect-ratio: auto; }
         .brand-logo-gourmet {
             width: clamp(300px, 36vw, 440px);
             height: auto;
@@ -387,13 +395,13 @@
     </style>
 
     <!-- CTA catálogo -->
-    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream); padding-top: clamp(3rem, 5vw, 5rem);">
+    <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream);">
         <div class="container"
             style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:1.5rem;">
             <h2 class="section-title-md" style="color:var(--c-dark);">Acesse o nosso catálogo</h2>
 
             <div style="width:100%; max-width:880px; margin: 2rem auto 2.5rem; border-radius:12px; overflow:hidden; aspect-ratio:16/9; box-shadow: 0 20px 40px rgba(0,0,0,0.15);">
-                <img src="assets/images/cta-catalogo-marcas.png" alt="Linha completa Phytonatus — composição com mel, óleo de coco, temperos e produtos naturais" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy" />
+                <img src="assets/images/_originals/ChatGPT%20Image%2026%20de%20mai.%20de%202026%2C%2011_30_56.png" alt="Linha completa Phytonatus — composição com mel, óleo de coco, temperos e produtos naturais" style="width:100%;height:100%;object-fit:cover;object-position:center;" loading="lazy" />
             </div>
 
             <div style="display:flex;gap:1.25rem;flex-wrap:wrap;justify-content:center;">
