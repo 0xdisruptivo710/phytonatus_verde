@@ -7,7 +7,7 @@
     <title>Private Label | Phytonatus</title>
     <meta name="description"
         content="Private Label e marca própria com a Phytonatus. Estrutura industrial, certificações internacionais e mais de 20 anos de know-how em produtos naturais." />
-    <link rel="stylesheet" href="assets/css/style.css?v=13" />
+    <link rel="stylesheet" href="assets/css/style.css?v=14" />
 </head>
 
 <body class="page-light">
@@ -395,10 +395,19 @@
             transform-origin: left center;
             transition: transform .3s var(--ease-out);
         }
+        /* Posicionamento individual: La Pierre max-esquerda, Fazenda e Aster
+           centralizados no proprio cell, Nuestra Cocina mantem ancorado a esquerda */
+        .pl-brand-hero:nth-child(2) img,
+        .pl-brand-hero:nth-child(3) img {
+            object-position: center center;
+            transform-origin: center center;
+        }
         .pl-brand-hero:hover {
             transform: translateY(-4px);
         }
         .pl-brand-hero:hover img { transform: scale(1.42); }
+        .pl-brand-hero:nth-child(2):hover img,
+        .pl-brand-hero:nth-child(3):hover img { transform-origin: center center; transform: scale(1.42); }
         @media (max-width: 960px) {
             .pl-brands-hero-grid { grid-template-columns: repeat(2, 1fr); }
             .pl-brand-hero img { transform: scale(1.2); }
