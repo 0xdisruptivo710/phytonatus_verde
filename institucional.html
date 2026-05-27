@@ -73,56 +73,34 @@
     <section class="s-pad-sm wavy-top-section" style="background:var(--c-cream-2);">
         <div class="container">
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(3rem,6vw,8rem);align-items:center;"
-                class="responsive-split">
-                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.5rem;">
+                class="responsive-split inst-history">
+                <div class="inst-history-logo" style="display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:1.5rem;">
                     <img src="assets/images/Logos%20e%20Selos/logo-phytonatus-institucional.png" alt="Phytonatus" class="fade-in" style="width:clamp(280px,32vw,420px);height:auto;display:block;" loading="lazy" />
                 </div>
                 <div style="display:flex;flex-direction:column;gap:1.25rem;">
-                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);">
+                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);font-weight:400;">
                         A Phytonatus conta com uma equipe comprometida com qualidade, confiança e excelência em tudo o que faz. Desde 1999, fortalecemos relações sólidas com clientes, fornecedores, colaboradores e parceiros, sempre com respeito e transparência.
                     </p>
-                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);">
+                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);font-weight:400;">
                         Ao longo dessa trajetória, consolidamos nossa atuação no mercado de produtos naturais, com produtos que promovem saúde, bem-estar e qualidade de vida. Com foco em inovação e nas necessidades do consumidor, ampliamos constantemente nosso portfólio, garantindo qualidade, segurança e eficiência em cada etapa do processo.
                     </p>
-                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);">
+                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);font-weight:400;">
                         Atendemos diversos segmentos, com destaque para o varejo, food service e indústrias, além do envase de marca própria para produtos de linha e projetos personalizados.
                     </p>
-                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);font-weight:500;">
+                    <p class="body-lead fade-in" style="font-size:clamp(1.15rem,1.8vw,1.35rem);font-weight:700;">
                         Mais do que produtos naturais, entregamos confiança, compromisso e cuidado em cada detalhe.
                     </p>
                 </div>
             </div>
-
-            <div class="fade-in yt-facade" data-yt-id="VTp5H6-_1cA" role="button" tabindex="0" aria-label="Reproduzir vídeo institucional Phytonatus" style="margin-top:clamp(4rem,8vw,6rem);border-radius:12px;overflow:hidden;aspect-ratio:16/9;box-shadow: 0 20px 40px rgba(0,0,0,0.15);position:relative;cursor:pointer;background:var(--c-bg-escuro-2);">
-                <img src="https://i.ytimg.com/vi/VTp5H6-_1cA/hqdefault.jpg" srcset="https://i.ytimg.com/vi/VTp5H6-_1cA/hqdefault.jpg 480w, https://i.ytimg.com/vi/VTp5H6-_1cA/maxresdefault.jpg 1280w" sizes="(max-width: 880px) 100vw, 880px" alt="Vídeo Institucional Phytonatus" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;display:block;" />
-                <span class="yt-facade-play" aria-hidden="true" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:clamp(64px,7vw,92px);height:clamp(64px,7vw,92px);border-radius:50%;background:rgba(38,78,54,0.92);display:flex;align-items:center;justify-content:center;box-shadow:0 12px 40px rgba(0,0,0,0.35);transition:transform .25s, background .25s;">
-                    <svg viewBox="0 0 24 24" width="34" height="34" fill="#fff" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
-                </span>
-            </div>
-            <script>
-                (function(){
-                    var f = document.currentScript.previousElementSibling;
-                    if (!f) return;
-                    function load(){
-                        var id = f.getAttribute('data-yt-id');
-                        var iframe = document.createElement('iframe');
-                        iframe.width = '100%'; iframe.height = '100%';
-                        iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&modestbranding=1';
-                        iframe.title = 'Vídeo Institucional Phytonatus';
-                        iframe.frameBorder = '0';
-                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                        iframe.allowFullscreen = true;
-                        iframe.style.display = 'block'; iframe.style.border = '0';
-                        f.innerHTML = ''; f.appendChild(iframe); f.style.cursor = 'default';
-                    }
-                    f.addEventListener('click', load);
-                    f.addEventListener('keydown', function(e){ if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); load(); }});
-                    f.addEventListener('mouseenter', function(){ var p = f.querySelector('.yt-facade-play'); if (p) { p.style.transform = 'translate(-50%,-50%) scale(1.08)'; p.style.background = 'rgba(0,154,68,.95)'; }});
-                    f.addEventListener('mouseleave', function(){ var p = f.querySelector('.yt-facade-play'); if (p) { p.style.transform = 'translate(-50%,-50%)'; p.style.background = 'rgba(38,78,54,0.92)'; }});
-                })();
-            </script>
         </div>
     </section>
+    <style>
+        /* Institucional - Nossa Historia: esconde o logo no mobile e texto ocupa largura total */
+        @media (max-width: 760px) {
+            .inst-history-logo { display: none !important; }
+            .inst-history { grid-template-columns: 1fr !important; }
+        }
+    </style>
 
     <!-- PILARES OPERACIONAIS -->
     <section class="wavy-top-section" style="background:var(--c-cream);">
