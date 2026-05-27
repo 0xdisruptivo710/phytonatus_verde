@@ -7,7 +7,7 @@
   <title>Phytonatus | Produtos Naturais com Propósito</title>
   <meta name="description"
     content="Grupo Phytonatus — empresa B2B de produtos naturais premium. Mel, cacau, coco, sal rosa e muito mais. Empório do Mel, Empório Nuts, Vida Gourmet." />
-  <link rel="stylesheet" href="assets/css/style.css?v=21" />
+  <link rel="stylesheet" href="assets/css/style.css?v=22" />
 </head>
 
 <body class="page-light">
@@ -215,11 +215,12 @@
     }
     .parceiro-item {
       display: flex; align-items: center; justify-content: center;
-      min-height: 389px;
+      min-height: 583px;
       padding: 0.3rem;
+      overflow: visible;
     }
     .parceiro-item img {
-      max-width: 100%; max-height: 355px;
+      max-width: 150%; max-height: 533px;
       width: auto; height: auto;
       object-fit: contain;
       mix-blend-mode: multiply;
@@ -230,12 +231,12 @@
     @media (max-width: 960px) {
       .parceiros-grid { grid-template-columns: repeat(3, 1fr); }
       .parceiro-item { min-height: 304px; }
-      .parceiro-item img { max-height: 270px; }
+      .parceiro-item img { max-width: 100%; max-height: 270px; }
     }
     @media (max-width: 560px) {
       .parceiros-grid { grid-template-columns: repeat(2, 1fr); }
       .parceiro-item { min-height: 254px; }
-      .parceiro-item img { max-height: 220px; }
+      .parceiro-item img { max-width: 100%; max-height: 220px; }
     }
   </style>
 
