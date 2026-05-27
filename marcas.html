@@ -68,7 +68,7 @@
 <!-- ═══ EMPÓRIO DO MEL ══════════════════════════════════ -->
     <article id="emporio-mel" class="brand-block-full brand-tone-mel">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/brand-emporio-mel-2026.png" alt="Empório do Mel — linha completa: méis por florada, bisnagas, sachês, sprays de própolis e mini méis" loading="eager" style="object-fit:cover;" />
+            <img src="assets/images/brand-emporio-mel-2026.png" alt="Empório do Mel — linha completa: méis por florada, bisnagas, sachês, sprays de própolis e mini méis" loading="eager" style="object-fit:contain;padding:clamp(1rem,2.5vw,2.5rem);" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-emporio-mel-novo.png" alt="Logo Empório do Mel" class="brand-logo-lg" loading="lazy" />
@@ -93,7 +93,7 @@
 <!-- ═══ EMPÓRIO NUT'S ════════════════════════════════════ -->
     <article id="emporio-nuts" class="brand-block-full reverse brand-tone-nuts">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/nossas%20marcas/nuts.png" alt="Empório Nut's — sal rosa do Himalaia, cacau em pó 100%, derivados de coco, temperos naturais e mix de pimentas" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/nuts.png" alt="Empório Nut's — sal rosa do Himalaia, cacau em pó 100%, derivados de coco, temperos naturais e mix de pimentas" loading="lazy" style="object-fit:contain;padding:clamp(1rem,2.5vw,2.5rem);" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-emporio-nuts-novo.png" alt="Logo Empório Nut's" class="brand-logo-lg brand-logo-nuts" loading="lazy" />
@@ -118,7 +118,7 @@
 <!-- ═══ PHYTONATUS ═══════════════════════════════════════ -->
     <article id="phytonatus" class="brand-block-full brand-tone-phyto">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/nossas%20marcas/phytonatus.png" alt="Phytonatus — bisnagas tradicionais de mel puro e saudável (1kg, 500g e 200g)" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/phytonatus.png" alt="Phytonatus — bisnagas tradicionais de mel puro e saudável (1kg, 500g e 200g)" loading="lazy" style="object-fit:contain;padding:clamp(1rem,2.5vw,2.5rem);" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-phytonatus-apicultor.png" alt="Logo Phytonatus Apicultor" class="brand-logo-lg brand-logo-apicultor" loading="lazy" />
@@ -140,7 +140,7 @@
 <!-- ═══ VIDA GOURMET ═════════════════════════════════════ -->
     <article id="vida-gourmet" class="brand-block-full reverse brand-tone-gourmet">
         <div class="brand-block-img" style="background:var(--c-cream-2);">
-            <img src="assets/images/nossas%20marcas/vida%20gourmet.png" alt="Vida Gourmet — Chimichurri Receita Tradicional Argentina com Sal Rosa do Himalaia" loading="lazy" style="object-fit:cover;" />
+            <img src="assets/images/nossas%20marcas/vida%20gourmet.png" alt="Vida Gourmet — Chimichurri Receita Tradicional Argentina com Sal Rosa do Himalaia" loading="lazy" style="object-fit:contain;padding:clamp(1rem,2.5vw,2.5rem);" />
         </div>
         <div class="brand-block-info light">
             <img src="assets/images/Logos%20e%20Selos/logo-vida-gourmet-novo.png" alt="Logo Vida Gourmet" class="brand-logo-lg brand-logo-gourmet" loading="lazy" />
@@ -391,6 +391,68 @@
         }
         @media(max-width:960px) {
             .brand-block-img { aspect-ratio: 4/3; min-height: 360px; }
+        }
+
+        /* ─────────────────────────────────────────────────
+           MOBILE (≤760px) — reformulação simples e funcional:
+           foto em cima, info embaixo, ondas menores, sem
+           hover effects que travam o layout em touch.
+           ───────────────────────────────────────────────── */
+        @media (max-width: 760px) {
+            /* Onda menor + sem altura mínima de viewport */
+            .brand-block-full {
+                --wave-h: clamp(48px, 9vw, 72px);
+                min-height: auto !important;
+                grid-template-columns: 1fr !important;
+            }
+            /* Desliga hover-expand de coluna (não faz sentido em touch) */
+            .brand-block-full:has(.brand-block-img:hover),
+            .brand-block-full:has(.brand-block-info:hover) {
+                grid-template-columns: 1fr !important;
+            }
+            /* Desliga zoom da foto no hover/tap */
+            .brand-block-full .brand-block-img img,
+            .brand-block-full:hover .brand-block-img img,
+            .brand-block-full .brand-block-img:hover img {
+                transform: none !important;
+                transition: none !important;
+            }
+            .brand-block-full .brand-block-img,
+            .brand-block-full .brand-block-info {
+                transition: none !important;
+            }
+            /* Imagem: contida (sem corte) + respiro */
+            .brand-block-img {
+                aspect-ratio: 4/3 !important;
+                min-height: auto !important;
+                background: var(--c-cream-2) !important;
+            }
+            .brand-block-img img {
+                object-fit: contain !important;
+                padding: 1rem !important;
+            }
+            /* Info: padding proporcional à onda menor */
+            .brand-block-info {
+                padding: calc(var(--wave-h) + 1.75rem) 1.25rem calc(var(--wave-h) + 1.75rem) !important;
+            }
+            /* Logos e tipografia escalados pra mobile */
+            .brand-logo-lg {
+                width: clamp(220px, 60vw, 320px) !important;
+                height: auto !important;
+                margin-bottom: 1.25rem !important;
+            }
+            .brand-logo-nuts {
+                width: clamp(170px, 48vw, 240px) !important;
+                height: clamp(220px, 60vw, 320px) !important;
+            }
+            .brand-block-tagline {
+                font-size: clamp(1.25rem, 5vw, 1.55rem) !important;
+                margin-bottom: 1rem !important;
+            }
+            .brand-block-text {
+                font-size: clamp(0.98rem, 3.8vw, 1.05rem) !important;
+            }
+            .brand-block-name { margin-bottom: 0.75rem !important; }
         }
     </style>
 
