@@ -504,7 +504,7 @@ footer {
 .loja-card:hover { transform: translateY(-3px); }
 .loja-card-logo {
     width: auto;
-    height: 114px;
+    height: 148px;
     object-fit: contain;
     mix-blend-mode: multiply;
     filter: saturate(0.95) contrast(1.05);
@@ -512,9 +512,9 @@ footer {
 }
 /* Equilibrio visual: o logo Phytonatus e largo (ratio 1.94), os outros sao
    quadrados (1:1). Alturas diferentes deixam os 3 com presenca parecida. */
-.loja-card-logo--phyto  { height: 83px; }
-.loja-card-logo--amazon { height: 122px; }
-.loja-card-logo--ml     { height: 140px; }
+.loja-card-logo--phyto  { height: 108px; }
+.loja-card-logo--amazon { height: 159px; }
+.loja-card-logo--ml     { height: 182px; }
 /* Card sempre transparente — multiply do logo bleacha o fundo branco do PNG */
 .loja-card {
     padding: 0.75rem 0.85rem;
