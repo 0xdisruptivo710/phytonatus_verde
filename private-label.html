@@ -7,7 +7,7 @@
     <title>Private Label | Phytonatus</title>
     <meta name="description"
         content="Private Label e marca própria com a Phytonatus. Estrutura industrial, certificações internacionais e mais de 20 anos de know-how em produtos naturais." />
-    <link rel="stylesheet" href="assets/css/style.css?v=19" />
+    <link rel="stylesheet" href="assets/css/style.css?v=20" />
 </head>
 
 <body class="page-light">
@@ -360,19 +360,17 @@
             .pl-alcance-header, .pl-alcance-refs { text-align: center; }
         }
 
-        /* Grid das marcas parceiras: 4 colunas de largura natural
-           empacotadas a esquerda. Lado direito fica vazio de proposito
-           para todos os logos ficarem agrupados a esquerda do bloco. */
+        /* Grid das marcas parceiras: 4 cells de tamanho fixo distribuidos
+           uniformemente pela largura inteira do container (space-between).
+           Espacamento igual entre os 4 logos, ocupando toda a largura. */
         .pl-brands-hero-grid {
             display: grid;
-            grid-template-columns: repeat(4, auto);
-            gap: clamp(1.5rem, 3vw, 3rem);
+            grid-template-columns: repeat(4, minmax(160px, 220px));
+            justify-content: space-between;
+            gap: 0;
             width: 100%;
-            max-width: 880px;
             margin: 0;
             align-items: center;
-            justify-content: start;
-            justify-items: start;
         }
         .pl-brand-hero {
             display: flex;
@@ -380,7 +378,6 @@
             justify-content: center;
             aspect-ratio: 2 / 1;
             min-height: clamp(120px, 14vw, 180px);
-            width: clamp(140px, 16vw, 200px);
             background: transparent;
             border-radius: 0;
             box-shadow: none;
