@@ -7,7 +7,7 @@
     <title>Private Label | Phytonatus</title>
     <meta name="description"
         content="Private Label e marca própria com a Phytonatus. Estrutura industrial, certificações internacionais e mais de 20 anos de know-how em produtos naturais." />
-    <link rel="stylesheet" href="assets/css/style.css?v=17" />
+    <link rel="stylesheet" href="assets/css/style.css?v=18" />
 </head>
 
 <body class="page-light">
@@ -418,15 +418,19 @@
         .pl-brand-hero:nth-child(3):hover img { transform-origin: center center; transform: scale(1.42); }
         .pl-brand-hero:nth-child(4):hover img { transform: scale(1.16); }
         @media (max-width: 960px) {
-            .pl-brands-hero-grid { grid-template-columns: repeat(2, 1fr); }
+            .pl-brands-hero-grid { grid-template-columns: repeat(2, auto); }
             .pl-brand-hero img { transform: scale(1.2); }
             .pl-brand-hero:hover img { transform: scale(1.26); }
+            .pl-brand-hero:nth-child(4) img { transform: scale(0.96); }
+            .pl-brand-hero:nth-child(4):hover img { transform: scale(1.02); }
         }
         @media (max-width: 480px) {
             .pl-brands-hero-grid { grid-template-columns: 1fr; }
-            .pl-brand-hero { min-height: 140px; }
+            .pl-brand-hero { min-height: 140px; width: 100%; }
             .pl-brand-hero img { transform: scale(1.1); }
             .pl-brand-hero:hover img { transform: scale(1.15); }
+            .pl-brand-hero:nth-child(4) img { transform: scale(0.88); }
+            .pl-brand-hero:nth-child(4):hover img { transform: scale(0.94); }
         }
     </style>
 
