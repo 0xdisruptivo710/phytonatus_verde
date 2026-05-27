@@ -421,15 +421,21 @@
             .brand-block-full .brand-block-info {
                 transition: none !important;
             }
-            /* Imagem: contida (sem corte) + respiro */
+            /* Imagem: largura total na proporcao natural do PNG.
+               Sem cream-2 visivel ao redor; a onda do .brand-block-full
+               corta o topo da foto criando o divisor dinamico. */
             .brand-block-img {
-                aspect-ratio: 4/3 !important;
+                aspect-ratio: auto !important;
                 min-height: auto !important;
-                background: var(--c-cream-2) !important;
+                height: auto !important;
+                background: var(--c-cream-2);
             }
             .brand-block-img img {
-                object-fit: contain !important;
-                padding: 1rem !important;
+                width: 100% !important;
+                height: auto !important;
+                object-fit: cover !important;
+                padding: 0 !important;
+                display: block !important;
             }
             /* Info: padding proporcional à onda menor */
             .brand-block-info {
