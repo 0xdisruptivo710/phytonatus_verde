@@ -152,7 +152,12 @@
             position: relative;
             transition: grid-template-columns .7s cubic-bezier(.2,.7,.2,1);
             --wave-h: clamp(110px, 12vw, 180px);
-            min-height: 70vh !important;
+            /* Foto 63% / texto 37%. Container mais largo na coluna da foto =
+               proporcao mais perto do 3:2 da foto = menos corte nas laterais. */
+            grid-template-columns: 1.7fr 1fr !important;
+            /* Sem altura minima forcada: o bloco cresce pela altura do conteudo
+               (texto). A foto acompanha com align-self:stretch + height:100%. */
+            min-height: auto !important;
             -webkit-mask-image:
                 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 200' preserveAspectRatio='none'><path d='M0,100 C220,-60 480,260 720,100 C960,-60 1220,260 1440,100 L1440,200 L0,200 Z' fill='white'/></svg>"),
                 linear-gradient(#fff, #fff);
@@ -222,9 +227,11 @@
         @media (max-width: 960px) {
             .brand-block-info::before { display: none; }
         }
-        .brand-block-full:has(.brand-block-img:hover)  { grid-template-columns: 1.6fr 1fr; }
-        .brand-block-full:has(.brand-block-info:hover) { grid-template-columns: 1fr 1.6fr; }
-        .brand-block-full .brand-block-img img { transition: transform .9s cubic-bezier(.2,.7,.2,1) !important; }
+        .brand-block-full:has(.brand-block-img:hover)  { grid-template-columns: 1.7fr 1fr !important; }
+        .brand-block-full:has(.brand-block-info:hover) { grid-template-columns: 1fr 1.7fr !important; }
+        /* Foto estica pra altura do bloco (definida pelo conteudo do texto). */
+        .brand-block-full .brand-block-img { align-self: stretch; }
+        .brand-block-full .brand-block-img img { height: 100%; transition: transform .9s cubic-bezier(.2,.7,.2,1) !important; }
         .brand-block-full .brand-block-img:hover img { transform: scale(1.08) !important; }
         .brand-block-full .brand-block-img,
         .brand-block-full .brand-block-info { transition: flex .7s, padding .7s; }
