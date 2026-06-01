@@ -34,8 +34,7 @@
           <li><a href="marcas.html">Marcas</a></li>
           <li><a href="private-label.html">Private Label</a></li>
           <li><a href="contato.html">Contato</a></li>
-          <!-- TODO: aguarda PDF catalogo.pdf da Ana -->
-          <li><a href="#" download class="nav-cta-catalog">Catálogo <span class="arrow-dl" aria-hidden="true">↓</span></a></li>
+          <li><a href="assets/docs/catalogo.pdf" download class="nav-cta-catalog">Catálogo <span class="arrow-dl" aria-hidden="true">↓</span></a></li>
         </ul>
       </nav>
       <button class="hamburger" id="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -49,8 +48,7 @@
     <a href="marcas.html">Marcas</a>
     <a href="private-label.html">Private Label</a>
     <a href="contato.html">Contato</a>
-    <!-- TODO: aguarda PDF catalogo.pdf da Ana -->
-    <a href="#" download>Catálogo ↓</a>
+    <a href="assets/docs/catalogo.pdf" download>Catálogo ↓</a>
     <a href="https://loja.phytonatus.com.br/" target="_blank" rel="noopener" class="m-cta">Ir à Loja ↗</a>
   </nav>
 
@@ -205,22 +203,28 @@
     </div>
   </section>
   <style>
+    /* Reduz a altura da seção: aproxima a onda (divisão da página) dos logos.
+       Especificidade alta p/ vencer a regra global .wavy-top-section.wavy-compact. */
+    .parceiros-section.wavy-top-section.wavy-compact:not(footer) {
+      padding-bottom: calc(var(--wave-h) + clamp(0.85rem, 1.3vw, 1.35rem)) !important;
+    }
     .parceiros-grid {
       display: grid;
       grid-template-columns: repeat(6, 1fr);
-      gap: clamp(2.5rem, 4.5vw, 4.5rem);
+      gap: clamp(1rem, 2.5vw, 2.5rem);
       width: 100%;
       max-width: 1240px;
       align-items: center;
+      margin-inline: auto;
     }
     .parceiro-item {
       display: flex; align-items: center; justify-content: center;
-      min-height: 466px;
+      min-height: 150px;
       padding: 0.3rem;
       overflow: visible;
     }
     .parceiro-item img {
-      max-width: 150%; max-height: 533px;
+      max-width: 100%; max-height: 150px;
       width: auto; height: auto;
       object-fit: contain;
       mix-blend-mode: multiply;
@@ -228,15 +232,14 @@
       transition: transform .25s var(--ease-out), filter .25s;
     }
     .parceiro-item:hover img { transform: translateY(-3px) scale(1.04); filter: saturate(1.05); }
-    @media (max-width: 960px) {
+    /* Em telas menores, 6 lado a lado não cabe — quebra de forma legível */
+    @media (max-width: 900px) {
       .parceiros-grid { grid-template-columns: repeat(3, 1fr); }
-      .parceiro-item { min-height: 304px; }
-      .parceiro-item img { max-width: 100%; max-height: 270px; }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 480px) {
       .parceiros-grid { grid-template-columns: repeat(2, 1fr); }
-      .parceiro-item { min-height: 254px; }
-      .parceiro-item img { max-width: 100%; max-height: 220px; }
+      .parceiro-item { min-height: 120px; }
+      .parceiro-item img { max-height: 120px; }
     }
   </style>
 
@@ -246,15 +249,15 @@
       <h2 class="section-title-md" style="color:var(--c-dark);margin:0;">Lojas Online</h2>
       <div class="lojas-grid">
         <a href="#" target="_blank" rel="noopener" class="loja-card" aria-label="Amazon">
-          <img src="assets/images/lojas/amazon.png" alt="Amazon" class="loja-card-logo loja-card-logo--amazon" />
+          <span class="loja-card-logo-box"><img src="assets/images/lojas/amazon.png" alt="Amazon" class="loja-card-logo loja-card-logo--amazon" /></span>
           <span class="loja-card-cta">Comprar ↗</span>
         </a>
         <a href="#" target="_blank" rel="noopener" class="loja-card" aria-label="Mercado Livre">
-          <img src="assets/images/lojas/mercado-livre.png" alt="Mercado Livre" class="loja-card-logo loja-card-logo--ml" />
+          <span class="loja-card-logo-box"><img src="assets/images/lojas/mercado-livre.png" alt="Mercado Livre" class="loja-card-logo loja-card-logo--ml" /></span>
           <span class="loja-card-cta">Comprar ↗</span>
         </a>
         <a href="https://loja.phytonatus.com.br/" target="_blank" rel="noopener" class="loja-card" aria-label="Loja Phytonatus">
-          <img src="assets/images/Logos%20e%20Selos/logo-phytonatus-institucional.png" alt="Loja Phytonatus" class="loja-card-logo loja-card-logo--phyto" />
+          <span class="loja-card-logo-box"><img src="assets/images/lojas/phytonatus.png" alt="Loja Phytonatus" class="loja-card-logo loja-card-logo--phyto" /></span>
           <span class="loja-card-cta">Comprar ↗</span>
         </a>
       </div>

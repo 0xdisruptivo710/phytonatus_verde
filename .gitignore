@@ -13,8 +13,10 @@ LOGOS CLIENTES *
 *.docx
 *.pdf
 !**/catalogo.pdf
+!assets/docs/*.pdf
 
 # Sistema
 .DS_Store
 Thumbs.db
 *.tmp
+.gstack/
