@@ -1,5 +1,6 @@
-# Backup local das fotos originais antes de compressao web
+# Backup local de assets originais antes de troca/compressao web
 assets/images/_originals/
+assets/videos/_originals/
 
 # Pastas de trabalho locais (assets brutos, briefings, skills externas)
 briefing-site-*/

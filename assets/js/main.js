@@ -36,46 +36,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (cursor && !isTouch) {
         let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
-        let lastTrailX = cx, lastTrailY = cy;
-        let trailLayer = null;
+
+        // ── 2 abelhas mini fixas que seguem a grande (enxame) ──────────
+        // Cada mini persegue a posicao da abelha "da frente" (a grande p/ a 1a,
+        // a 1a mini p/ a 2a) com lerp suave + um leve offset lateral, criando
+        // um trio espalhado que voa junto.
+        const minis = [];
         if (!reduceMotion) {
-            trailLayer = document.createElement('div');
-            trailLayer.className = 'cursor-trail-layer';
-            document.body.appendChild(trailLayer);
+            const layer = document.createElement('div');
+            layer.className = 'cursor-trail-layer';
+            document.body.appendChild(layer);
+            // offX/offY: deslocamento lateral (uma puxa pra um lado, outra pro outro)
+            // ease: quanto menor, mais "atrasada" a mini fica em relacao a da frente
+            const cfg = [
+                { offX: -16, offY: 14, ease: 0.14 },
+                { offX:  18, offY: 20, ease: 0.10 },
+            ];
+            cfg.forEach(c => {
+                const el = document.createElement('span');
+                el.className = 'cursor-trail-dot';
+                layer.appendChild(el);
+                minis.push({ el, x: cx, y: cy, offX: c.offX, offY: c.offY, ease: c.ease });
+            });
         }
 
         window.addEventListener('mousemove', e => {
             cx = e.clientX; cy = e.clientY;
-            if (!trailLayer) return;
-            const dx = cx - lastTrailX, dy = cy - lastTrailY;
-            // Spawn ~3 abelhinhas no rastro: threshold maior + fade rápido
-            if (dx * dx + dy * dy > 2500) {
-                spawnTrailDot(cx, cy);
-                lastTrailX = cx; lastTrailY = cy;
-            }
         }, { passive: true });
 
-        function spawnTrailDot(x, y) {
-            // Limita a 3 abelhinhas ativas no rastro
-            const existing = trailLayer.querySelectorAll('.cursor-trail-dot:not(.fade)');
-            if (existing.length >= 3) return;
-            const dot = document.createElement('span');
-            dot.className = 'cursor-trail-dot';
-            dot.style.left = x + 'px';
-            dot.style.top = y + 'px';
-            trailLayer.appendChild(dot);
-            requestAnimationFrame(() => dot.classList.add('fade'));
-            setTimeout(() => dot.remove(), 700);
-        }
-
+        let bigX = cx, bigY = cy;
         (function animateCursor() {
+            // abelha grande segue o mouse
             const rect = cursor.getBoundingClientRect();
             const curX = rect.left + rect.width / 2;
             const curY = rect.top + rect.height / 2;
-            const x = curX + (cx - curX) * 0.18;
-            const y = curY + (cy - curY) * 0.18;
-            cursor.style.left = x + 'px';
-            cursor.style.top  = y + 'px';
+            bigX = curX + (cx - curX) * 0.18;
+            bigY = curY + (cy - curY) * 0.18;
+            cursor.style.left = bigX + 'px';
+            cursor.style.top  = bigY + 'px';
+
+            // minis seguem em cadeia: a 1a persegue a grande, a 2a persegue a 1a
+            let leadX = bigX, leadY = bigY;
+            for (let i = 0; i < minis.length; i++) {
+                const m = minis[i];
+                const tx = leadX + m.offX, ty = leadY + m.offY;
+                m.x += (tx - m.x) * m.ease;
+                m.y += (ty - m.y) * m.ease;
+                m.el.style.left = m.x + 'px';
+                m.el.style.top  = m.y + 'px';
+                leadX = m.x; leadY = m.y;
+            }
             requestAnimationFrame(animateCursor);
         })();
         document.querySelectorAll('a, button, [data-hover]').forEach(el => {
