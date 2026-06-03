@@ -523,18 +523,18 @@ footer {
 /* Alturas +40% por peso optico (define o tamanho visual de cada logo). */
 .loja-card-logo--phyto  { max-height: 118px; }  /* 84 * 1.4 */
 .loja-card-logo--amazon { max-height: 157px; }  /* 112 * 1.4 */
-.loja-card-logo--ml     { max-height: 210px; }  /* 150 * 1.4 */
+.loja-card-logo--ml     { max-height: 165px; }  /* reduzido p/ alinhar com amazon (~157) */
 /* Compensacao da borda branca residual de cada PNG: amazon e ml tem ~17% de
    espaco vazio embaixo, fazendo o logo VISIVEL flutuar acima da base da imagem
    (e o "Comprar" desalinhar). Empurra cada logo pra baixo pela altura dessa
    borda (17% do max-height), alinhando a base visivel dos tres. Phytonatus
    nao tem borda -> 0. Valores escalados +40% junto com o tamanho. */
 .loja-card-logo--amazon { transform: translateY(27px); }
-.loja-card-logo--ml     { transform: translateY(36px); }
+.loja-card-logo--ml     { transform: translateY(28px); }
 .loja-card-logo--phyto  { transform: translateY(0); }
 /* preserva o lift do hover somando a compensacao */
 .loja-card:hover .loja-card-logo--amazon { transform: translateY(24px); }
-.loja-card:hover .loja-card-logo--ml     { transform: translateY(33px); }
+.loja-card:hover .loja-card-logo--ml     { transform: translateY(25px); }
 .loja-card:hover .loja-card-logo--phyto  { transform: translateY(-3px); }
 /* Card sempre transparente — multiply do logo bleacha o fundo branco do PNG */
 .loja-card {
