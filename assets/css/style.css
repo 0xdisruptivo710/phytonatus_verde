@@ -141,9 +141,9 @@ button { cursor: pointer; font-family: var(--f-body); }
     width: 30px;
     height: 24px;
     pointer-events: none;
-    /* FORMATO EXATO do vetor do cliente (pintado por cima do próprio desenho:
-       laço em "8" + corpo + 2 bolinhas), na cor MARROM do Empório do Mel:
-       corpo #4A3728 + listras #241409 + bolinhas/olhos #1C120A. */
+    /* FORMATO EXATO do vetor do cliente (laço em "8" + corpo + 2 bolinhas),
+       monocromático no MARROM do Empório do Mel (#4A3728), igual ao logo —
+       sem listras. A faixa diagonal vazada do esboço dá o "stripe" do logo. */
     background-image: url("../images/cursor-bee.png");
     background-size: contain;
     background-repeat: no-repeat;
