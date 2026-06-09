@@ -26,72 +26,87 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // ── Custom cursor (abelha) ─────────────────────────────
+    // ── Cursor: enxame de abelhas orbitando o mouse ────────
+    // Antes uma abelha "perseguia" o ponteiro e duas minis formavam
+    // rastro EMBAIXO dele (ao clicar pareciam empilhadas). Agora um
+    // trio ORBITA o cursor — distribuido ao redor, como as abelhas do
+    // logo do Emporio do Mel voando em torno da colmeia. Nunca se
+    // acumulam embaixo do mouse.
     const cursor = document.getElementById('cursor');
     const cursorDot = document.getElementById('cursor-dot');
+    if (cursor) cursor.style.display = 'none';        // desativa a abelha-cursor antiga
     if (cursorDot) cursorDot.style.display = 'none';
     const isTouch = window.matchMedia('(hover: none)').matches || window.innerWidth < 760;
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isTouch && cursor) cursor.style.display = 'none';
 
-    if (cursor && !isTouch) {
-        let cx = window.innerWidth / 2, cy = window.innerHeight / 2;
+    if (!isTouch) {
+        let mx = window.innerWidth / 2, my = window.innerHeight / 2;   // alvo (mouse)
+        let cxp = mx, cyp = my;                                        // centro do enxame (suavizado)
+        window.addEventListener('mousemove', e => {
+            mx = e.clientX; my = e.clientY;
+        }, { passive: true });
 
-        // ── 2 abelhas mini fixas que seguem a grande (enxame) ──────────
-        // Cada mini persegue a posicao da abelha "da frente" (a grande p/ a 1a,
-        // a 1a mini p/ a 2a) com lerp suave + um leve offset lateral, criando
-        // um trio espalhado que voa junto.
-        const minis = [];
-        if (!reduceMotion) {
-            const layer = document.createElement('div');
-            layer.className = 'cursor-trail-layer';
-            document.body.appendChild(layer);
-            // offX/offY: deslocamento lateral (uma puxa pra um lado, outra pro outro)
-            // ease: quanto menor, mais "atrasada" a mini fica em relacao a da frente
-            const cfg = [
-                { offX: -16, offY: 14, ease: 0.14 },
-                { offX:  18, offY: 20, ease: 0.10 },
-            ];
-            cfg.forEach(c => {
-                const el = document.createElement('span');
-                el.className = 'cursor-trail-dot';
-                layer.appendChild(el);
-                minis.push({ el, x: cx, y: cy, offX: c.offX, offY: c.offY, ease: c.ease });
+        const swarm = document.createElement('div');
+        swarm.className = 'bee-swarm';
+        document.body.appendChild(swarm);
+
+        // Trio distribuido a 120deg ao redor do mouse. Cada abelha tem
+        // raio/velocidade/fase proprios -> orbita organica, nunca enfileirada.
+        const N = reduceMotion ? 1 : 3;
+        const bees = [];
+        for (let i = 0; i < N; i++) {
+            const el = document.createElement('span');
+            el.className = 'bee';
+            swarm.appendChild(el);
+            bees.push({
+                el, x: mx, y: my,
+                phase: (i / N) * Math.PI * 2,
+                rx: 30 + i * 5,
+                ry: 23 + i * 4,
+                speed: 0.85 + i * 0.13,
+                wob: i * 1.7,
             });
         }
 
-        window.addEventListener('mousemove', e => {
-            cx = e.clientX; cy = e.clientY;
-        }, { passive: true });
-
-        let bigX = cx, bigY = cy;
-        (function animateCursor() {
-            // abelha grande segue o mouse
-            const rect = cursor.getBoundingClientRect();
-            const curX = rect.left + rect.width / 2;
-            const curY = rect.top + rect.height / 2;
-            bigX = curX + (cx - curX) * 0.18;
-            bigY = curY + (cy - curY) * 0.18;
-            cursor.style.left = bigX + 'px';
-            cursor.style.top  = bigY + 'px';
-
-            // minis seguem em cadeia: a 1a persegue a grande, a 2a persegue a 1a
-            let leadX = bigX, leadY = bigY;
-            for (let i = 0; i < minis.length; i++) {
-                const m = minis[i];
-                const tx = leadX + m.offX, ty = leadY + m.offY;
-                m.x += (tx - m.x) * m.ease;
-                m.y += (ty - m.y) * m.ease;
-                m.el.style.left = m.x + 'px';
-                m.el.style.top  = m.y + 'px';
-                leadX = m.x; leadY = m.y;
-            }
-            requestAnimationFrame(animateCursor);
-        })();
+        // Ao passar por links/botoes o enxame se aproxima (abelhas "inspecionam").
+        let radius = 1, radiusTarget = 1;
         document.querySelectorAll('a, button, [data-hover]').forEach(el => {
-            el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
-            el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
+            el.addEventListener('mouseenter', () => { radiusTarget = 0.6; });
+            el.addEventListener('mouseleave', () => { radiusTarget = 1; });
         });
+
+        let t = 0, last = performance.now();
+        (function tick(now) {
+            const dt = Math.min((now - last) / 1000, 0.05);   // s (cap p/ abas em 2o plano)
+            last = now; t += dt;
+
+            // centro do enxame segue o mouse com inercia (independe de fps)
+            const follow = 1 - Math.pow(0.0009, dt);
+            cxp += (mx - cxp) * follow;
+            cyp += (my - cyp) * follow;
+            radius += (radiusTarget - radius) * follow;
+
+            for (let i = 0; i < bees.length; i++) {
+                const b = bees[i];
+                if (reduceMotion) {
+                    // sem orbita: segue o mouse com leve offset lateral
+                    b.x += (mx + 15 - b.x) * 0.12;
+                    b.y += (my - 13 - b.y) * 0.12;
+                    b.el.style.transform = 'translate(-50%,-50%) translate(' + b.x + 'px,' + b.y + 'px)';
+                    continue;
+                }
+                const ang = b.phase + t * b.speed;
+                const breath = 1 + Math.sin(t * 1.3 + b.wob) * 0.08;
+                const tx = cxp + Math.cos(ang) * b.rx * breath * radius;
+                const ty = cyp + Math.sin(ang) * b.ry * breath * radius;
+                b.x += (tx - b.x) * 0.25;          // leve inercia de enxame
+                b.y += (ty - b.y) * 0.25;
+                const tilt = Math.sin(t * 2 + b.wob) * 7;   // wobble +-7deg
+                b.el.style.transform =
+                    'translate(-50%,-50%) translate(' + b.x + 'px,' + b.y + 'px) rotate(' + tilt + 'deg)';
+            }
+            requestAnimationFrame(tick);
+        })(last);
     }
 
     // ── Header behaviors ──────────────────────────────────
