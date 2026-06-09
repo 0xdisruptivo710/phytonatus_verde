@@ -142,13 +142,14 @@ button { cursor: pointer; font-family: var(--f-body); }
     height: 24px;
     pointer-events: none;
     /* FORMATO EXATO do vetor do cliente (pintado por cima do próprio desenho:
-       laço em "8" + corpo + 2 bolinhas), apenas com a pintura refinada:
-       mel #F5B315 + listras pretas no corpo + bolinhas escuras (#2A2118). */
+       laço em "8" + corpo + 2 bolinhas), na cor MARROM do Empório do Mel:
+       corpo #4A3728 + listras #241409 + bolinhas/olhos #1C120A. */
     background-image: url("../images/cursor-bee.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    filter: drop-shadow(0 0 1px rgba(251,250,246,.7)) drop-shadow(0 1px 2px rgba(0,0,0,.28));
+    /* halo claro reforçado: o marrom precisa de contorno p/ não sumir no verde escuro */
+    filter: drop-shadow(0 0 1px rgba(251,250,246,.95)) drop-shadow(0 0 2px rgba(251,250,246,.55)) drop-shadow(0 1px 2px rgba(0,0,0,.3));
     will-change: transform;
 }
 
