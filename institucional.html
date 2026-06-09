@@ -379,29 +379,8 @@
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="assets/js/main.js?v=10"></script>
-    <script>
-        // Registrar form handler especifico desta pagina
-        document.addEventListener('DOMContentLoaded', () => {
-            const BRAND_GREEN = '#009A44';
-            const fform = document.getElementById('footer-contact-form-inst');
-            if (fform) {
-                fform.addEventListener('submit', e => {
-                    e.preventDefault();
-                    const btn = fform.querySelector('.btn-submit-full');
-                    const original = btn.textContent;
-                    btn.textContent = '✓ Mensagem enviada!';
-                    btn.style.background = BRAND_GREEN;
-                    btn.style.borderColor = BRAND_GREEN;
-                    setTimeout(() => {
-                        btn.textContent = original;
-                        btn.style.background = '';
-                        btn.style.borderColor = '';
-                        fform.reset();
-                    }, 4000);
-                });
-            }
-        });
-    </script>
+    <script src="assets/js/main.js?v=11"></script>
+    <!-- O envio do formulário footer-contact-form-inst é tratado por
+         assets/js/main.js (setupFormSubmit -> /api/contact via Resend). -->
 </body>
 </html>

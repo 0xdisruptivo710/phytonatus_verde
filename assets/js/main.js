@@ -257,25 +257,89 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // ── Contact form submit ───────────────────────────────
+    // ── Contact form submit (envia de verdade via /api/contact -> Resend) ──
     const BRAND_GREEN = '#009A44';
+    const ERR_RED = '#C0392B';
+
+    function fileToBase64(file) {
+        return new Promise((resolve, reject) => {
+            const r = new FileReader();
+            r.onload = () => resolve(String(r.result).split(',')[1] || '');
+            r.onerror = reject;
+            r.readAsDataURL(file);
+        });
+    }
+
+    function flashBtn(btn, msg, color, original) {
+        btn.disabled = false;
+        btn.style.opacity = '';
+        btn.textContent = msg;
+        btn.style.background = color;
+        btn.style.borderColor = color;
+        clearTimeout(btn._flashT);
+        btn._flashT = setTimeout(() => {
+            btn.textContent = original;
+            btn.style.background = '';
+            btn.style.borderColor = '';
+        }, 4500);
+    }
 
     function setupFormSubmit(formId) {
         const form = document.getElementById(formId);
         if (!form) return;
-        form.addEventListener('submit', e => {
+
+        // honeypot anti-spam: campo oculto que humanos não preenchem
+        if (!form.querySelector('input[name="_gotcha"]')) {
+            const hp = document.createElement('input');
+            hp.type = 'text'; hp.name = '_gotcha'; hp.tabIndex = -1; hp.autocomplete = 'off';
+            hp.setAttribute('aria-hidden', 'true');
+            hp.style.cssText = 'position:absolute!important;left:-9999px;width:1px;height:1px;opacity:0';
+            form.appendChild(hp);
+        }
+
+        form.addEventListener('submit', async e => {
             e.preventDefault();
-            const btn = form.querySelector('.btn-submit-full');
-            const original = btn.textContent;
-            btn.textContent = '✓ Mensagem enviada!';
-            btn.style.background = BRAND_GREEN;
-            btn.style.borderColor = BRAND_GREEN;
-            setTimeout(() => {
-                btn.textContent = original;
-                btn.style.background = '';
-                btn.style.borderColor = '';
+            const btn = form.querySelector('.btn-submit-full')
+                || form.querySelector('button[type="submit"]')
+                || form.querySelector('button');
+            if (!btn) return;
+            const original = btn.dataset.label || btn.textContent;
+            btn.dataset.label = original;
+
+            // coleta os campos de texto
+            const payload = {};
+            new FormData(form).forEach((v, k) => { if (typeof v === 'string') payload[k] = v; });
+
+            // anexo opcional (só o formulário completo tem input[type=file])
+            const fileInput = form.querySelector('input[type="file"]');
+            const file = fileInput && fileInput.files && fileInput.files[0];
+            if (file) {
+                if (file.size > 3 * 1024 * 1024) {
+                    flashBtn(btn, '✗ Anexo acima de 3MB', ERR_RED, original);
+                    return;
+                }
+                try { payload.anexo = { filename: file.name, contentBase64: await fileToBase64(file) }; }
+                catch (_) { /* segue sem o anexo se falhar a leitura */ }
+            }
+
+            btn.disabled = true;
+            btn.style.opacity = '.85';
+            btn.textContent = 'Enviando…';
+
+            try {
+                const resp = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload),
+                });
+                if (!resp.ok) throw new Error('HTTP ' + resp.status);
                 form.reset();
-            }, 4000);
+                const attachLabel = document.getElementById('attach-label');
+                if (attachLabel) attachLabel.textContent = 'Anexar arquivo (PDF, imagem, DOC)';
+                flashBtn(btn, '✓ Mensagem enviada!', BRAND_GREEN, original);
+            } catch (err) {
+                flashBtn(btn, '✗ Erro ao enviar. Tente de novo.', ERR_RED, original);
+            }
         });
     }
 
@@ -285,6 +349,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupFormSubmit('footer-contact-form-clientes');
     setupFormSubmit('footer-contact-form-pl');
     setupFormSubmit('footer-contact-form-contato');
+    setupFormSubmit('footer-contact-form-inst');
 
 
     // ── File attachment ───────────────────────────────────

@@ -21,3 +21,11 @@ LOGOS CLIENTES *
 Thumbs.db
 *.tmp
 .gstack/
+
+# Variáveis de ambiente / segredos (NUNCA commitar a chave do Resend)
+.env
+.env.*
+!.env.example
+
+# Vercel
+.vercel/
