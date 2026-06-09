@@ -61,8 +61,8 @@ document.addEventListener('DOMContentLoaded', () => {
             bees.push({
                 el, x: mx, y: my,
                 phase: (i / N) * Math.PI * 2,
-                rx: 30 + i * 5,
-                ry: 23 + i * 4,
+                rx: 34 + i * 6,
+                ry: 26 + i * 5,
                 speed: 0.85 + i * 0.13,
                 wob: i * 1.7,
             });

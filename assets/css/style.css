@@ -138,16 +138,16 @@ button { cursor: pointer; font-family: var(--f-body); }
     position: fixed;
     left: 0;
     top: 0;
-    width: 30px;
-    height: 30px;
+    width: 46px;
+    height: 46px;
     pointer-events: none;
-    /* Abelha Empório do Mel: corpo marrom listrado em pose diagonal
-       + laço em 8 das asas (assinatura da marca). */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 52 52'%3E%3Cg transform='rotate(-28 26 26)'%3E%3Cg fill='none' stroke='%234A3728' stroke-width='1.7' stroke-linejoin='round' stroke-linecap='round' transform='rotate(-12 22 27)'%3E%3Cpath d='M22,27 C28,24.5 27,13 22,13 C17,13 16,24.5 22,27 C28,29.5 27,41 22,41 C17,41 16,29.5 22,27 Z'/%3E%3C/g%3E%3Cellipse cx='24' cy='27' rx='10.5' ry='5.7' fill='%234A3728'/%3E%3Crect x='21.4' y='21.4' width='3.2' height='11.2' rx='1.6' fill='%23FBFAF6' transform='rotate(8 23 27)'/%3E%3Ccircle cx='35.6' cy='27' r='4' fill='%234A3728'/%3E%3Cg fill='none' stroke='%234A3728' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M38,24.6 q2.4,-1.3 3.6,-3.1'/%3E%3Cpath d='M38.6,26 q2.5,-1 4.2,-1.9'/%3E%3C/g%3E%3Cpath d='M14.2,27 l-3.6,-1.8 l0,3.6 z' fill='%234A3728'/%3E%3C/g%3E%3C/svg%3E");
+    /* Abelha de mel: corpo amarelo listrado, cabeça/tórax escuros,
+       antenas e ferrão, com o laço em "8" das asas (assinatura Empório do Mel). */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 60'%3E%3Cdefs%3E%3CclipPath id='b1'%3E%3Cellipse cx='26' cy='30' rx='12.5' ry='7'/%3E%3C/clipPath%3E%3C/defs%3E%3Cg transform='rotate(-28 30 30)'%3E%3Cg transform='rotate(-12 24 30)'%3E%3Cpath d='M24,30 C31,27 30,13 24,13 C18,13 17,27 24,30 C31,33 30,47 24,47 C18,47 17,33 24,30 Z' fill='%23FFFFFF' fill-opacity='0.55' stroke='%234A3728' stroke-width='1.4' stroke-linejoin='round'/%3E%3C/g%3E%3Cellipse cx='26' cy='30' rx='12.5' ry='7' fill='%23F4B400' stroke='%233B2A16' stroke-width='1'/%3E%3Cg clip-path='url(%23b1)' fill='%233B2A16'%3E%3Crect x='20' y='22' width='3.1' height='16'/%3E%3Crect x='26.6' y='22' width='3.1' height='16'/%3E%3C/g%3E%3Ccircle cx='39' cy='30' r='4.6' fill='%233B2A16'/%3E%3Cg fill='none' stroke='%233B2A16' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M41.5,27 q2.6,-1.6 4.2,-3.8'/%3E%3Cpath d='M42,28.6 q2.8,-1.1 4.8,-2.2'/%3E%3C/g%3E%3Cpath d='M14,30 l-4,-2 l0,4 z' fill='%233B2A16'/%3E%3C/g%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    filter: drop-shadow(0 0 1px rgba(251,250,246,.95)) drop-shadow(0 1px 2px rgba(0,0,0,.20));
+    filter: drop-shadow(0 0 1px rgba(251,250,246,.7)) drop-shadow(0 1px 2px rgba(0,0,0,.28));
     will-change: transform;
 }
 
