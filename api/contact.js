@@ -42,11 +42,16 @@ module.exports = async function handler(req, res) {
     return res.status(500).json({ error: 'Servidor não configurado.' });
   }
 
-  // Destino e remetente configuráveis por env (com defaults).
-  // Enquanto o domínio não estiver verificado em resend.com/domains,
-  // use onboarding@resend.dev (entrega só p/ o e-mail dono da conta Resend).
-  const to = process.env.CONTACT_TO || 'aios.chatbot@gmail.com';
-  const from = process.env.CONTACT_FROM || 'Site Phytonatus <onboarding@resend.dev>';
+  // Roteamento por setor: cada departamento recebe na sua própria caixa.
+  // (domínio phytonatus.com.br verificado no Resend)
+  const RECIPIENTS = {
+    comercial: 'comercial@phytonatus.com.br',
+    compras: 'compras@phytonatus.com.br',
+    rh: 'administrativo@phytonatus.com.br',
+    sac: 'sac@phytonatus.com.br',
+  };
+  const to = RECIPIENTS[destinatario] || process.env.CONTACT_TO || RECIPIENTS.comercial;
+  const from = process.env.CONTACT_FROM || 'Phytonatus <nao-responda@phytonatus.com.br>';
   const setorLabel = SETORES[destinatario] || destinatario || 'Comercial';
 
   const linhas = [
