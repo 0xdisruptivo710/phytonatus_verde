@@ -310,6 +310,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const payload = {};
             new FormData(form).forEach((v, k) => { if (typeof v === 'string') payload[k] = v; });
 
+            // valida obrigatórios no client (os forms usam novalidate, então o
+            // browser não pede; sem isso o envio incompleto bate no backend e
+            // volta 400 -> aparecia como "erro ao enviar" genérico).
+            const obrig = { nome: 'o nome', email: 'o e-mail', mensagem: 'a mensagem' };
+            const falta = Object.keys(obrig).find(k => !String(payload[k] || '').trim());
+            if (falta) {
+                flashBtn(btn, '✗ Preencha ' + obrig[falta], ERR_RED, original);
+                const campo = form.querySelector('[name="' + falta + '"]');
+                if (campo) campo.focus();
+                return;
+            }
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+                flashBtn(btn, '✗ E-mail inválido', ERR_RED, original);
+                const campo = form.querySelector('[name="email"]');
+                if (campo) campo.focus();
+                return;
+            }
+
             // anexo opcional (só o formulário completo tem input[type=file])
             const fileInput = form.querySelector('input[type="file"]');
             const file = fileInput && fileInput.files && fileInput.files[0];
@@ -332,13 +350,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload),
                 });
-                if (!resp.ok) throw new Error('HTTP ' + resp.status);
+                if (!resp.ok) {
+                    // mostra a mensagem real do backend (ex.: "Preencha nome..."),
+                    // em vez de engolir tudo num erro genérico.
+                    let msg = 'Erro ao enviar. Tente de novo.';
+                    try { const d = await resp.json(); if (d && d.error) msg = d.error; } catch (_) {}
+                    throw new Error(msg);
+                }
                 form.reset();
                 const attachLabel = document.getElementById('attach-label');
                 if (attachLabel) attachLabel.textContent = 'Anexar arquivo (PDF, imagem, DOC)';
                 flashBtn(btn, '✓ Mensagem enviada!', BRAND_GREEN, original);
             } catch (err) {
-                flashBtn(btn, '✗ Erro ao enviar. Tente de novo.', ERR_RED, original);
+                flashBtn(btn, '✗ ' + (err && err.message ? err.message : 'Erro ao enviar. Tente de novo.'), ERR_RED, original);
             }
         });
     }

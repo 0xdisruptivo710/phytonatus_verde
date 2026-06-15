@@ -147,9 +147,10 @@
                         <button class="dest-tab" data-dest="rh" type="button">RH</button>
                         <button class="dest-tab" data-dest="sac" type="button">SAC</button>
                     </div>
-                    <input type="hidden" id="dest-hidden" name="destinatario" value="comercial" />
 
                     <form id="contact-form" novalidate>
+                        <!-- destinatario PRECISA ficar dentro do <form> para entrar no FormData (roteamento por setor) -->
+                        <input type="hidden" id="dest-hidden" name="destinatario" value="comercial" />
 
                         <div class="float-group">
                             <input class="float-input" type="text" id="nome" name="nome" placeholder=" " required
