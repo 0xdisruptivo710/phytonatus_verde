@@ -2,7 +2,7 @@
 // Uso: node scripts/check-fields.mjs            (todas as páginas)
 //      node scripts/check-fields.mjs marcas.html (só uma)
 import fs from 'node:fs';
-import { scanFields, patchText, patchImageSrc } from '../lib/cms/html-patch.mjs';
+import { scanFields, patchText, patchImageSrc, patchBackgroundImage } from '../lib/cms/html-patch.mjs';
 
 const ALL = ['index.html', 'institucional.html', 'marcas.html', 'onde-encontrar.html', 'private-label.html', 'contato.html'];
 const pages = process.argv.slice(2).length ? process.argv.slice(2) : ALL;
@@ -18,6 +18,7 @@ for (const p of pages) {
   for (const f of fields) {
     try {
       if (f.type === 'text') patchText(html, f.id, f.value);
+      else if (f.type === 'background') patchBackgroundImage(html, f.id, f.value);
       else patchImageSrc(html, f.id, f.value);
     } catch (e) {
       console.error(`  ✖ ${p} :: ${f.id} (${f.type}) -> ${e.message}`);

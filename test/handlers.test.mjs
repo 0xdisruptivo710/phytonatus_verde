@@ -94,6 +94,24 @@ test('save-image: otimiza, grava webp e aponta o src', async () => {
   assert.ok(puts.some((p) => Buffer.from(p.body.content, 'base64').toString('utf8').includes('assets/images/cms/x.banner.webp')));
 });
 
+test('save-image: tipo background troca a url do style', async () => {
+  process.env.SESSION_SECRET = 'k';
+  process.env.GITHUB_TOKEN = 't';
+  const page = `<body><section data-cms-bg="x.hero" style="background-image:url('assets/images/old.png');background-size:cover;">x</section></body>`;
+  const png = (await sharp({ create: { width: 800, height: 600, channels: 3, background: { r: 1, g: 2, b: 3 } } }).png().toBuffer()).toString('base64');
+  const puts = [];
+  globalThis.fetch = fakeFetch([
+    { match: (u, i) => i.method === 'PUT', respond: (u, i) => { puts.push({ url: u, body: JSON.parse(i.body) }); return { json: { commit: { sha: 'N' } } }; } },
+    { match: (u) => u.includes('/contents/assets/images/cms/'), respond: () => ({ status: 404, json: {} }) },
+    { match: (u) => u.includes('/contents/index.html'), respond: () => ({ json: { sha: 's', content: b64(page) } }) },
+  ]);
+  const res = mockRes();
+  await saveImage(mockReq({ method: 'POST', cookie: auth(), body: { page: 'index.html', id: 'x.hero', type: 'background', fileBase64: png, mimeType: 'image/png' } }), res);
+  assert.equal(res.statusCode, 200);
+  assert.match(res.body.src, /assets\/images\/cms\/x\.hero\.webp\?v=/);
+  assert.ok(puts.some((p) => /background-image:url\('assets\/images\/cms\/x\.hero\.webp\?v=/.test(Buffer.from(p.body.content, 'base64').toString('utf8'))));
+});
+
 test('revert GET lista commits de conteúdo', async () => {
   process.env.SESSION_SECRET = 'k';
   process.env.GITHUB_TOKEN = 't';

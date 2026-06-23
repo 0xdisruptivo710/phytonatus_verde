@@ -106,8 +106,8 @@ function renderField(page, f) {
       if (!file.files[0]) return toast('Escolha uma imagem.');
       btn.disabled = true;
       try {
-        const { base64, mimeType } = await downscale(file.files[0], 1600);
-        const out = await api('save-image', { method: 'POST', body: JSON.stringify({ page, id: f.id, fileBase64: base64, mimeType }) });
+        const { base64, mimeType } = await downscale(file.files[0], f.type === 'background' ? 1920 : 1600);
+        const out = await api('save-image', { method: 'POST', body: JSON.stringify({ page, id: f.id, type: f.type, fileBase64: base64, mimeType }) });
         img.src = '/' + out.src; toast('Imagem trocada! Vai ao ar em ~1 min.');
       } catch (e) { toast('Erro: ' + e.message); } finally { btn.disabled = false; }
     };
