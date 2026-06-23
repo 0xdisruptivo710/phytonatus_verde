@@ -1,0 +1,29 @@
+:root { --green:#264E36; --bg:#F0EFE9; --ink:#2C1B0A; }
+* { box-sizing:border-box; }
+body { margin:0; font-family:Arial,Helvetica,sans-serif; color:var(--ink); background:#fafaf7; }
+.bar { background:var(--green); color:#fff; padding:12px 18px; display:flex; align-items:center; gap:10px; }
+.bar button { margin-left:auto; }
+.card { max-width:380px; margin:8vh auto; background:#fff; padding:28px; border-radius:12px; box-shadow:0 6px 30px rgba(0,0,0,.08); }
+h1 { margin:0 0 6px; color:var(--green); }
+.muted { color:#777; font-size:14px; }
+.error { color:#b3261e; min-height:18px; }
+input, textarea { width:100%; padding:10px 12px; border:1px solid #ccc; border-radius:8px; font:inherit; margin:8px 0; }
+textarea { min-height:84px; resize:vertical; }
+button { background:var(--green); color:#fff; border:0; border-radius:8px; padding:10px 16px; cursor:pointer; font:inherit; }
+button:disabled { opacity:.6; cursor:wait; }
+button.ghost { background:transparent; color:#fff; border:1px solid rgba(255,255,255,.6); }
+button.small { padding:6px 10px; font-size:13px; }
+#app { max-width:760px; margin:18px auto; padding:0 16px; }
+.tabs { display:flex; gap:8px; margin-bottom:14px; }
+.tabs button { background:#e7e7e0; color:#333; }
+.tabs button.active { background:var(--green); color:#fff; }
+.page { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
+.page h2 { margin:0 0 10px; font-size:16px; color:var(--green); text-transform:capitalize; }
+.field { padding:10px 0; border-top:1px solid #eee; }
+.field label { font-weight:bold; font-size:14px; display:block; }
+.field .row { display:flex; gap:10px; align-items:center; }
+.thumb { width:64px; height:64px; object-fit:cover; border-radius:6px; border:1px solid #ddd; background:#f3f3f0; }
+.toast { position:fixed; bottom:20px; left:50%; transform:translateX(-50%); background:#264E36; color:#fff; padding:10px 16px; border-radius:8px; box-shadow:0 6px 24px rgba(0,0,0,.2); }
+#commits { list-style:none; padding:0; }
+#commits li { background:#fff; border-radius:8px; padding:10px 12px; margin-bottom:8px; display:flex; align-items:center; gap:10px; }
+#commits .msg { flex:1; font-size:14px; }

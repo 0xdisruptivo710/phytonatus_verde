@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Painel de Conteúdo — Phytonatus</title>
+  <link rel="stylesheet" href="/admin/style.css">
+</head>
+<body>
+  <header class="bar"><strong>Phytonatus</strong> · Painel de Conteúdo
+    <button id="logout" class="ghost" hidden>Sair</button>
+  </header>
+
+  <main id="login" class="card">
+    <h1>Entrar</h1>
+    <p class="muted">Digite a senha da equipe para editar o site.</p>
+    <input id="password" type="password" placeholder="Senha" autocomplete="current-password">
+    <button id="enter">Entrar</button>
+    <p id="login-error" class="error" role="alert"></p>
+  </main>
+
+  <main id="app" hidden>
+    <nav class="tabs">
+      <button data-tab="editor" class="active">Editar</button>
+      <button data-tab="history">Histórico</button>
+    </nav>
+    <section id="tab-editor">
+      <p id="editor-status" class="muted">Carregando…</p>
+      <div id="pages"></div>
+    </section>
+    <section id="tab-history" hidden>
+      <p class="muted">Últimas alterações. Clique em “Desfazer” para reverter.</p>
+      <ul id="commits"></ul>
+    </section>
+  </main>
+
+  <div id="toast" class="toast" hidden></div>
+  <script src="/admin/app.js"></script>
+</body>
+</html>
