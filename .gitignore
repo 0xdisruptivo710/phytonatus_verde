@@ -27,5 +27,8 @@ Thumbs.db
 .env.*
 !.env.example
 
+# Node / dependências
+node_modules/
+
 # Vercel
 .vercel/
