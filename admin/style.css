@@ -17,6 +17,9 @@ button.small { padding:6px 10px; font-size:13px; }
 .tabs { display:flex; gap:8px; margin-bottom:14px; }
 .tabs button { background:#e7e7e0; color:#333; }
 .tabs button.active { background:var(--green); color:#fff; }
+.page-nav { display:flex; flex-wrap:wrap; gap:8px; margin-bottom:16px; }
+.page-pill { background:#e7e7e0; color:#333; }
+.page-pill.active { background:var(--green); color:#fff; }
 .page { background:#fff; border-radius:10px; padding:14px 16px; margin-bottom:14px; box-shadow:0 2px 10px rgba(0,0,0,.05); }
 .page h2 { margin:0 0 10px; font-size:16px; color:var(--green); text-transform:capitalize; }
 .field { padding:10px 0; border-top:1px solid #eee; }

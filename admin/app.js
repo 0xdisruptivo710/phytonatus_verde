@@ -35,23 +35,54 @@ async function showApp() {
   await loadFields();
 }
 
-// ---- editor ----
+// ---- editor (uma página por vez) ----
+const PAGE_NAMES = {
+  'index.html': 'Início',
+  'institucional.html': 'Institucional',
+  'marcas.html': 'Marcas',
+  'onde-encontrar.html': 'Onde Encontrar',
+  'private-label.html': 'Private Label',
+  'contato.html': 'Contato',
+};
+const pageName = (p) => PAGE_NAMES[p] || p.replace('.html', '');
+
+let PAGES_DATA = [];
+
 async function loadFields() {
   try {
     const { pages } = await api('fields');
+    PAGES_DATA = pages;
     $('#editor-status').textContent = '';
-    const root = $('#pages'); root.innerHTML = '';
-    for (const p of pages) {
-      const box = document.createElement('div'); box.className = 'page';
-      box.innerHTML = `<h2>${p.page.replace('.html', '')}</h2>`;
-      if (!p.fields.length) { const e = document.createElement('p'); e.className = 'muted'; e.textContent = 'Sem campos marcados.'; box.appendChild(e); }
-      for (const f of p.fields) box.appendChild(renderField(p.page, f));
-      root.appendChild(box);
-    }
+    renderPageNav();
+    const first = pages.find((p) => p.fields.length) || pages[0];
+    if (first) selectPage(first.page);
   } catch (e) {
     if (/autenticado/.test(e.message)) return location.reload();
     $('#editor-status').textContent = e.message;
   }
+}
+
+function renderPageNav() {
+  const nav = $('#page-nav'); nav.innerHTML = '';
+  for (const p of PAGES_DATA) {
+    const b = document.createElement('button');
+    b.className = 'page-pill'; b.dataset.page = p.page;
+    b.textContent = pageName(p.page) + (p.fields.length ? ` (${p.fields.length})` : '');
+    b.onclick = () => selectPage(p.page);
+    nav.appendChild(b);
+  }
+}
+
+function selectPage(page) {
+  document.querySelectorAll('#page-nav .page-pill').forEach((b) => b.classList.toggle('active', b.dataset.page === page));
+  const p = PAGES_DATA.find((x) => x.page === page);
+  const root = $('#pages'); root.innerHTML = '';
+  if (!p) return;
+  const box = document.createElement('div'); box.className = 'page';
+  box.innerHTML = `<h2>${pageName(p.page)}</h2>`;
+  if (!p.fields.length) { const e = document.createElement('p'); e.className = 'muted'; e.textContent = 'Sem campos editáveis nesta página.'; box.appendChild(e); }
+  for (const f of p.fields) box.appendChild(renderField(p.page, f));
+  root.appendChild(box);
 }
 
 function renderField(page, f) {
