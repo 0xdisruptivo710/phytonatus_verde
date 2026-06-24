@@ -80,9 +80,28 @@ function selectPage(page) {
   if (!p) return;
   const box = document.createElement('div'); box.className = 'page';
   box.innerHTML = `<h2>${pageName(p.page)}</h2>`;
-  if (!p.fields.length) { const e = document.createElement('p'); e.className = 'muted'; e.textContent = 'Sem campos editáveis nesta página.'; box.appendChild(e); }
-  for (const f of p.fields) box.appendChild(renderField(p.page, f));
+  if (!p.fields.length) {
+    const e = document.createElement('p'); e.className = 'muted'; e.textContent = 'Sem campos editáveis nesta página.'; box.appendChild(e);
+    root.appendChild(box); return;
+  }
+  const texts = p.fields.filter((f) => f.type === 'text');
+  const images = p.fields.filter((f) => f.type === 'image' || f.type === 'background');
+  box.appendChild(renderGroup('Textos', texts, p.page));
+  box.appendChild(renderGroup('Imagens', images, p.page));
   root.appendChild(box);
+}
+
+function renderGroup(title, fields, page) {
+  const sec = document.createElement('div'); sec.className = 'field-group';
+  const h = document.createElement('h3'); h.className = 'group-title';
+  h.textContent = `${title} (${fields.length})`;
+  sec.appendChild(h);
+  if (!fields.length) {
+    const e = document.createElement('p'); e.className = 'muted'; e.textContent = 'Nenhum nesta página.'; sec.appendChild(e);
+  } else {
+    for (const f of fields) sec.appendChild(renderField(page, f));
+  }
+  return sec;
 }
 
 function renderField(page, f) {
