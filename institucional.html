@@ -110,6 +110,9 @@
                     if (!f) return;
                     function load(){
                         var id = f.getAttribute('data-yt-id');
+                        if (typeof window.phytoTrack === 'function') {
+                            window.phytoTrack('play_video', { video_id: id, titulo: 'institucional' });
+                        }
                         var iframe = document.createElement('iframe');
                         iframe.width = '100%'; iframe.height = '100%';
                         iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&mute=1&loop=1&playlist=' + id + '&rel=0&modestbranding=1';
@@ -415,7 +418,8 @@
     <script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-    <script src="assets/js/main.js?v=11"></script>
+    <script src="assets/js/main.js?v=12"></script>
+    <script src="assets/js/analytics.js?v=1" defer></script>
     <!-- O envio do formulário footer-contact-form-inst é tratado por
          assets/js/main.js (setupFormSubmit -> /api/contact via Resend). -->
 </body>

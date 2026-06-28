@@ -24,7 +24,10 @@ module.exports = async function handler(req, res) {
   }
 
   const body = typeof req.body === 'string' ? safeJson(req.body) : (req.body || {});
-  const { destinatario, nome, empresa, email, telefone, mensagem, anexo, _gotcha } = body;
+  const {
+    destinatario, nome, empresa, email, telefone, mensagem, anexo, _gotcha,
+    utm_source, utm_medium, utm_campaign, utm_content, utm_term,
+  } = body;
 
   // Honeypot anti-spam: bot preencheu o campo oculto -> finge sucesso e ignora.
   if (_gotcha) return res.status(200).json({ ok: true });
@@ -61,6 +64,17 @@ module.exports = async function handler(req, res) {
     ['E-mail', email],
     ['Telefone', telefone || '—'],
   ];
+
+  // Origem da campanha (UTMs) — só aparece quando o visitante chegou por um
+  // link rastreado (Meta Ads, Instagram, e-mail…). Ajuda o comercial a saber
+  // de qual campanha veio o lead.
+  const campanha = [
+    ['origem', utm_source], ['mídia', utm_medium], ['campanha', utm_campaign],
+    ['conteúdo', utm_content], ['termo', utm_term],
+  ].filter(([, v]) => v);
+  if (campanha.length) {
+    linhas.push(['Campanha', campanha.map(([k, v]) => k + ': ' + v).join('  ·  ')]);
+  }
   const html =
     '<div style="font-family:Arial,Helvetica,sans-serif;color:#2C1B0A;max-width:560px">' +
       '<h2 style="color:#264E36;margin:0 0 14px">Novo contato pelo site</h2>' +

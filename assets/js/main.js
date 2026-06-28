@@ -340,6 +340,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 catch (_) { /* segue sem o anexo se falhar a leitura */ }
             }
 
+            // Atribuição de campanha (UTMs) capturada pelo analytics.js — vai
+            // junto no e-mail (api/contact) e no evento de lead do GA4.
+            if (typeof window.phytoAttribution === 'function') {
+                const attr = window.phytoAttribution();
+                ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term'].forEach(k => {
+                    if (attr && attr[k]) payload[k] = attr[k];
+                });
+            }
+
             btn.disabled = true;
             btn.style.opacity = '.85';
             btn.textContent = 'Enviando…';
@@ -360,6 +369,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 form.reset();
                 const attachLabel = document.getElementById('attach-label');
                 if (attachLabel) attachLabel.textContent = 'Anexar arquivo (PDF, imagem, DOC)';
+                // GA4: lead gerado com sucesso (evento-chave/conversão).
+                if (typeof window.phytoTrack === 'function') {
+                    window.phytoTrack('generate_lead', {
+                        setor: payload.destinatario || payload.setor || 'comercial',
+                        form_id: formId,
+                        utm_source: payload.utm_source,
+                        utm_campaign: payload.utm_campaign
+                    });
+                }
                 flashBtn(btn, '✓ Mensagem enviada!', BRAND_GREEN, original);
             } catch (err) {
                 flashBtn(btn, '✗ ' + (err && err.message ? err.message : 'Erro ao enviar. Tente de novo.'), ERR_RED, original);
